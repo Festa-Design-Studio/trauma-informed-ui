@@ -4,27 +4,27 @@
 
 /* Custom styles */
 @layer base {
-    /* Import fonts */
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap');
+  /* Import fonts */
+  @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap");
 
-    /* Base styles */
-    html {
-        @apply antialiased;
-    }
+  /* Base styles */
+  html {
+    @apply antialiased;
+  }
 
-    body {
-        @apply text-grey-800 bg-selenite-white-50;
-    }
+  body {
+    @apply text-grey-800 bg-selenite-white-50;
+  }
 }
 
 @layer components {
-    /* Trauma-informed focus styles */
-    .focus-safe {
-        @apply focus:outline-none focus:ring-2 focus:ring-chrysocolla-green-300 focus:ring-offset-2 focus:ring-offset-selenite-white-50;
-    }
+  /* Trauma-informed focus styles */
+  .focus-safe {
+    @apply focus:outline-none focus:ring-2 focus:ring-chrysocolla-green-300 focus:ring-offset-2 focus:ring-offset-selenite-white-50;
+  }
 
-    /* Safe transition base */
-    .transition-safe {
-        @apply transition-all duration-300 ease-in-out;
-    }
-} 
+  /* Safe transition base */
+  .transition-safe {
+    @apply transition-all duration-300 ease-in-out;
+  }
+}
