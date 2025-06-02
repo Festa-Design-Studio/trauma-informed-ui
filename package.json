@@ -1,6 +1,7 @@
 {
   "name": "trauma-informed-ui",
-  "version": "1.0.0",
+  "private": true,
+  "version": "0.0.0",
   "description": "Dr. G's Lab Trauma-Informed UI Design System",
   "type": "module",
   "main": "index.html",
@@ -12,13 +13,14 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
-    "alpinejs": "^3.13.3"
+    "alpinejs": "^3.13.5"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.16",
+    "@tailwindcss/nesting": "^0.0.0-insiders.565cd3e",
+    "autoprefixer": "^10.4.17",
     "gh-pages": "^6.1.0",
-    "postcss": "^8.4.32",
-    "tailwindcss": "^3.4.0",
-    "vite": "^5.0.10"
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "vite": "^5.1.0"
   }
 }

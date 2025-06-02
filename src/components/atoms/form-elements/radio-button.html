@@ -1,0 +1,48 @@
+<!-- Component: Radio Button
+     Type: Atom
+     Status: Complete
+     Dependencies: None
+     Trauma-Informed Considerations:
+     - Clear grouping of options
+     - Visual feedback on selection
+     - Large touch targets
+     - Gentle transitions
+     - Optional descriptions
+-->
+<div class="space-y-4">
+  <template x-for="option in options" :key="option.value">
+    <label
+      :for="$id('radio-' + option.value)"
+      class="flex items-start space-x-3 cursor-pointer group"
+    >
+      <div class="relative flex items-center justify-center pt-1">
+        <input
+          :id="$id('radio-' + option.value)"
+          type="radio"
+          :name="$id('radio-group')"
+          :value="option.value"
+          x-model="selected"
+          class="peer sr-only"
+        />
+        <div
+          class="w-6 h-6 rounded-full border-2 transition-all duration-300 border-grey-300 group-hover:border-chrysocolla-green peer-checked:border-chrysocolla-green peer-focus:ring-2 peer-focus:ring-azurite-blue-200"
+        >
+          <div
+            class="w-3 h-3 rounded-full bg-chrysocolla-green absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 peer-checked:opacity-100 transition-opacity duration-300"
+          ></div>
+        </div>
+      </div>
+      <div class="flex-1">
+        <span
+          x-text="option.label"
+          class="block font-montserrat text-grey-800"
+        ></span>
+        <p
+          x-show="option.description"
+          x-text="option.description"
+          class="text-grey-600 text-caption mt-1"
+        ></p>
+      </div>
+    </label>
+  </template>
+</div>

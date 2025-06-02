@@ -1,0 +1,77 @@
+<!-- Component: Text Input
+     Type: Atom
+     Status: Complete
+     Dependencies: None
+     Trauma-Informed Considerations:
+     - Clear labeling and instructions
+     - Gentle validation feedback
+     - Predictable behavior
+     - Visual feedback on interaction
+     - Optional helper text for guidance
+-->
+<div class="space-y-2">
+  <label :for="$id('input')" class="block font-montserrat text-grey-800 mb-1">
+    <span x-text="label"></span>
+    <span x-show="required" class="text-rhodochrosite-rose ml-1">*</span>
+  </label>
+
+  <div class="relative">
+    <input
+      :id="$id('input')"
+      type="text"
+      x-model="value"
+      :placeholder="placeholder"
+      @focus="focused = true"
+      @blur="focused = false; validate()"
+      :class="{
+                'border-rhodochrosite-rose': error && touched,
+                'border-chrysocolla-green': !error && touched,
+                'border-grey-300': !touched
+            }"
+      class="w-full px-md py-sm rounded-md border-2 font-montserrat text-grey-800 placeholder-grey-500 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-azurite-blue-200"
+    />
+
+    <!-- Validation Icon -->
+    <div
+      x-show="touched"
+      class="absolute right-3 top-1/2 transform -translate-y-1/2"
+    >
+      <svg
+        x-show="!error"
+        class="h-5 w-5 text-chrysocolla-green"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+          clip-rule="evenodd"
+        />
+      </svg>
+      <svg
+        x-show="error"
+        class="h-5 w-5 text-rhodochrosite-rose"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </div>
+  </div>
+
+  <!-- Helper Text -->
+  <p x-show="helper" class="text-grey-600 text-caption" x-text="helper"></p>
+
+  <!-- Error Message -->
+  <p
+    x-show="error && touched"
+    class="text-rhodochrosite-rose text-caption"
+    x-text="error"
+  ></p>
+</div>

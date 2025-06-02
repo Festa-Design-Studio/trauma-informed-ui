@@ -1,0 +1,41 @@
+<!-- Component: Progress Bar
+     Type: Atom
+     Status: Complete
+     Dependencies: None
+     Trauma-Informed Considerations:
+     - Clear visual progress
+     - Gentle animations
+     - Color-coded feedback
+     - Accessible labeling
+     - Optional text indicators
+-->
+<div class="space-y-2">
+  <div class="flex justify-between items-center">
+    <label
+      :for="$id('progress')"
+      class="font-montserrat text-grey-800 text-caption"
+      >Progress</label
+    >
+    <span
+      class="font-montserrat text-grey-600 text-caption"
+      x-text="progress + '%'"
+    ></span>
+  </div>
+
+  <div class="relative h-2 bg-grey-200 rounded-full overflow-hidden">
+    <div
+      :id="$id('progress')"
+      role="progressbar"
+      :aria-valuenow="progress"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      class="absolute left-0 top-0 h-full bg-chrysocolla-green rounded-full transition-all duration-500 ease-out"
+      :style="{ width: progress + '%' }"
+    ></div>
+  </div>
+
+  <div class="flex justify-between text-caption text-grey-600">
+    <span>Start</span>
+    <span>Complete</span>
+  </div>
+</div>

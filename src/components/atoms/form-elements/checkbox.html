@@ -1,0 +1,50 @@
+<!-- Component: Checkbox
+     Type: Atom
+     Status: Complete
+     Dependencies: None
+     Trauma-Informed Considerations:
+     - Clear visual feedback
+     - Large touch target
+     - Explicit labeling
+     - Gentle transitions
+     - Optional description
+-->
+<div class="space-y-2">
+  <label
+    :for="$id('checkbox')"
+    class="flex items-start space-x-3 cursor-pointer group"
+  >
+    <div class="relative flex items-center justify-center pt-1">
+      <input
+        :id="$id('checkbox')"
+        type="checkbox"
+        x-model="checked"
+        class="peer sr-only"
+      />
+      <div
+        class="w-6 h-6 border-2 rounded transition-all duration-300 border-grey-300 group-hover:border-chrysocolla-green peer-checked:border-chrysocolla-green peer-checked:bg-chrysocolla-green peer-focus:ring-2 peer-focus:ring-azurite-blue-200"
+      >
+        <svg
+          class="w-5 h-5 text-selenite-white-50 opacity-0 peer-checked:opacity-100 transition-opacity duration-300"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </div>
+    </div>
+    <div class="flex-1">
+      <span x-text="label" class="block font-montserrat text-grey-800"></span>
+      <p
+        x-show="description"
+        x-text="description"
+        class="text-grey-600 text-caption mt-1"
+      ></p>
+    </div>
+  </label>
+</div>

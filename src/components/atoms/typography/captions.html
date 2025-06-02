@@ -1,0 +1,33 @@
+<!-- Component: Captions
+     Type: Atom
+     Status: Complete
+     Dependencies: None
+     Trauma-Informed Considerations:
+     - Clear but subtle appearance
+     - Appropriate spacing
+     - Readable size
+     - Gentle color contrast
+     - Consistent styling
+-->
+<div class="space-y-6">
+  <div class="space-y-2">
+    <div class="text-grey-600 text-caption">Caption - Regular</div>
+    <p class="font-montserrat text-grey-600 text-caption" x-text="caption"></p>
+  </div>
+
+  <div class="space-y-2">
+    <div class="text-grey-600 text-caption">Caption - Emphasized</div>
+    <p
+      class="font-montserrat text-grey-700 text-caption font-medium"
+      x-text="caption"
+    ></p>
+  </div>
+
+  <div class="space-y-2">
+    <div class="text-grey-600 text-caption">Caption - Subtle</div>
+    <p
+      class="font-montserrat text-grey-500 text-caption-small"
+      x-text="caption"
+    ></p>
+  </div>
+</div>

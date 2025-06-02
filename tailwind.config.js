@@ -1,7 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx,html}"],
-
+  content: ["./index.html", "./src/**/*.{html,js}"],
   theme: {
     colors: {
       transparent: "transparent",
@@ -64,65 +63,73 @@ export default {
         DEFAULT: "#d4a18c",
       },
       "selenite-white": {
-        50: "#ffffff",
-        100: "#fafafa",
-        200: "#f5f5f5",
-        DEFAULT: "#ffffff",
+        50: "#faf6f2",
+        100: "#f6f0e9",
+        200: "#e6d4c2",
+        300: "#d5b79c",
+        400: "#c49573",
+        500: "#b77c58",
+        600: "#aa694c",
+        700: "#8d5441",
+        800: "#734639",
+        900: "#5d3b31",
+        950: "#321d18",
+        DEFAULT: "#f6f0e9",
       },
       grey: {
-        50: "#f9fafb",
-        100: "#f3f4f6",
-        200: "#e5e7eb",
-        300: "#d1d5db",
-        400: "#9ca3af",
-        500: "#6b7280",
-        600: "#4b5563",
-        700: "#374151",
-        800: "#1f2937",
-        900: "#111827",
-        950: "#030712",
+        50: "#f6f6f6",
+        100: "#e7e7e7",
+        200: "#d1d1d1",
+        300: "#b0b0b0",
+        400: "#888888",
+        500: "#6d6d6d",
+        600: "#5d5d5d",
+        700: "#4f4f4f",
+        800: "#454545",
+        900: "#333333",
+        950: "#262626",
+        DEFAULT: "#454545",
       },
+      white: "#faf6f2",
+      black: "#262626",
+      error: "#bc563a",
+      success: "#2c888e",
+      warning: "#e0af91",
+      info: "#89c7d7",
     },
-
     fontFamily: {
       sans: ["Montserrat", "sans-serif"],
       serif: ['"Playfair Display Black"', "serif"],
-      playfair: ["Playfair Display", "serif"],
+      playfair: ['"Playfair Display Black"', "serif"],
       montserrat: ["Montserrat", "sans-serif"],
     },
-
     fontSize: {
-      xs: "0.25rem",
-      sm: "0.5rem",
+      xs: ["12px", { lineHeight: "16px" }],
+      sm: ["14px", { lineHeight: "20px" }],
       base: ["16px", { lineHeight: "24px" }],
-      lg: "1.5rem",
-      xl: "2rem",
-      "2xl": "3rem",
+      lg: ["18px", { lineHeight: "24px" }],
+      xl: ["20px", { lineHeight: "28px" }],
+      "2xl": ["24px", { lineHeight: "32px" }],
       "3xl": ["28px", { lineHeight: "36px" }],
       "4xl": ["32px", { lineHeight: "40px" }],
       "5xl": ["36px", { lineHeight: "44px" }],
       "6xl": ["48px", { lineHeight: "56px" }],
-
-      "h1-desktop": ["3.5rem", { lineHeight: "1.2" }],
+      "h1-desktop": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em" }],
       "h2-desktop": ["36px", { lineHeight: "44px", letterSpacing: "-0.02em" }],
       "h3-desktop": ["24px", { lineHeight: "32px", letterSpacing: "-0.02em" }],
       "h4-desktop": ["20px", { lineHeight: "28px", letterSpacing: "-0.02em" }],
-
-      "h1-tablet": ["3rem", { lineHeight: "1.2" }],
+      "h1-tablet": ["40px", { lineHeight: "48px", letterSpacing: "-0.02em" }],
       "h2-tablet": ["32px", { lineHeight: "40px", letterSpacing: "-0.02em" }],
       "h3-tablet": ["22px", { lineHeight: "30px", letterSpacing: "-0.02em" }],
       "h4-tablet": ["18px", { lineHeight: "26px", letterSpacing: "-0.02em" }],
-
-      "h1-mobile": ["2.5rem", { lineHeight: "1.2" }],
+      "h1-mobile": ["32px", { lineHeight: "40px", letterSpacing: "-0.02em" }],
       "h2-mobile": ["28px", { lineHeight: "36px", letterSpacing: "-0.02em" }],
       "h3-mobile": ["20px", { lineHeight: "28px", letterSpacing: "-0.02em" }],
       "h4-mobile": ["18px", { lineHeight: "24px", letterSpacing: "-0.02em" }],
-
       body: ["16px", { lineHeight: "24px", letterSpacing: "0" }],
       small: ["14px", { lineHeight: "20px", letterSpacing: "0" }],
       caption: ["12px", { lineHeight: "16px", letterSpacing: "0" }],
     },
-
     spacing: {
       0: "0",
       1: "4px",
@@ -137,15 +144,13 @@ export default {
       16: "64px",
       20: "80px",
       24: "96px",
-
-      xs: "0.25rem",
-      sm: "0.5rem",
-      md: "1rem",
-      lg: "1.5rem",
-      xl: "2rem",
-      "2xl": "3rem",
+      xs: "4px",
+      sm: "8px",
+      md: "16px",
+      lg: "24px",
+      xl: "32px",
+      "2xl": "48px",
     },
-
     screens: {
       sm: "320px",
       md: "768px",
@@ -153,17 +158,6 @@ export default {
       xl: "1280px",
       "2xl": "1536px",
     },
-
-    container: {
-      center: true,
-      padding: {
-        DEFAULT: "16px",
-        sm: "16px",
-        md: "32px",
-        lg: "64px",
-      },
-    },
-
     borderRadius: {
       none: "0",
       sm: "4px",
@@ -173,8 +167,16 @@ export default {
       xl: "16px",
       full: "9999px",
     },
-
     extend: {
+      backgroundImage: {
+        "gradient-selenite": "linear-gradient(to right, #faf6f2, #f6f0e9)",
+        "gradient-chrysocolla-azurite":
+          "linear-gradient(to right, #f0fbfb, #f0f9fb)",
+        "gradient-rhodochrosite-selenite":
+          "linear-gradient(to bottom, #fbf7f5, #faf6f2)",
+        "gradient-chrysocolla-med":
+          "linear-gradient(to right, #b7eae9, #4dc3c3)",
+      },
       transitionDuration: {
         DEFAULT: "300ms",
       },

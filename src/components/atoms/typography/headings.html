@@ -1,0 +1,33 @@
+<!-- Component: Headings
+     Type: Atom
+     Status: Complete
+     Dependencies: None
+     Trauma-Informed Considerations:
+     - Clear visual hierarchy
+     - Consistent spacing
+     - Readable font sizes
+     - Appropriate line heights
+     - Gentle color contrast
+-->
+<div class="space-y-8">
+  <template x-for="heading in headings" :key="heading.level">
+    <div class="space-y-2">
+      <div class="text-grey-600 text-caption">
+        Heading Level <span x-text="heading.level"></span>
+      </div>
+      <component
+        :is="'h' + heading.level"
+        x-text="heading.text"
+        :class="{
+                    'font-playfair font-bold text-azurite-blue-900': true,
+                    'text-h1-mobile md:text-h1-tablet lg:text-h1-desktop': heading.level === 1,
+                    'text-h2-mobile md:text-h2-tablet lg:text-h2-desktop': heading.level === 2,
+                    'text-h3-mobile md:text-h3-tablet lg:text-h3-desktop': heading.level === 3,
+                    'text-h4-mobile md:text-h4-tablet lg:text-h4-desktop': heading.level === 4,
+                    'text-h5-mobile md:text-h5-tablet lg:text-h5-desktop': heading.level === 5,
+                    'text-h6-mobile md:text-h6-tablet lg:text-h6-desktop': heading.level === 6
+                }"
+      ></component>
+    </div>
+  </template>
+</div>
