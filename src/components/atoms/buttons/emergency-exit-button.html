@@ -11,43 +11,39 @@
      - Responsive sizing for optimal touchpoint on different devices
 -->
 <div
-  x-data="{ 
-    hover: false,
-    tooltipPosition: 'bottom',
-    updateTooltipPosition() {
-      const buttonRect = this.$refs.button.getBoundingClientRect();
-      const spaceAbove = buttonRect.top;
-      const spaceBelow = window.innerHeight - buttonRect.bottom;
-      this.tooltipPosition = spaceBelow >= 40 ? 'bottom' : 'top';
-    }
+  x-data="emergencyExitButton({ size: size || 'md', label: label || 'Emergency Exit', action: action || (() => {}), tooltip: tooltip || 'Click to exit immediately' })"
+  :class="{
+    'inline-block relative': size !== 'full',
+    'w-full': size === 'full'
   }"
-  class="fixed bottom-4 right-4 z-50"
-  @mouseleave="hover = false"
 >
   <button
-    x-ref="button"
-    @mouseenter="hover = true; updateTooltipPosition()"
-    @focus="hover = true; updateTooltipPosition()"
+    @mouseenter="hover = true"
+    @mouseleave="hover = false"
+    @focus="hover = true"
     @blur="hover = false"
-    @click="exit()"
-    class="bg-rhodochrosite-rose hover:bg-rhodochrosite-rose-600 text-selenite-white-50 transition-all duration-300 flex items-center space-x-2 rounded-md shadow-soft"
+    @click="action()"
     :class="{
-      // Mobile - Small (sm)
-      'px-sm py-xs text-small': window.innerWidth < 768,
-      // Tablet - Medium (md)
-      'px-md py-sm': window.innerWidth >= 768 && window.innerWidth < 1024,
-      // Desktop and larger - Large (lg)
-      'px-lg py-md text-lg': window.innerWidth >= 1024
+      // Base classes
+      'bg-rhodochrosite-rose hover:bg-rhodochrosite-rose-600 text-white rounded-md shadow-soft transition-all duration flex items-center justify-center': true,
+      'transform scale-[1.02]': hover,
+      // Size variations
+      'px-sm py-xs text-small min-h-[44px] min-w-[44px] space-x-2': size === 'sm',
+      'px-md py-sm text-base min-h-[44px] space-x-2': size === 'md',
+      'px-lg py-md text-h4-mobile md:text-h4-tablet lg:text-h4-desktop min-h-[52px] space-x-3': size === 'lg',
+      'px-xl py-lg text-h3-mobile md:text-h3-tablet lg:text-h3-desktop min-h-[60px] space-x-4': size === 'xl',
+      'w-full': size === 'full'
     }"
     aria-label="Emergency exit - Click to leave immediately"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
       :class="{
-        'h-4 w-4': window.innerWidth < 768,
-        'h-5 w-5': window.innerWidth >= 768 && window.innerWidth < 1024,
-        'h-6 w-6': window.innerWidth >= 1024 && window.innerWidth < 1440,
-        'h-7 w-7': window.innerWidth >= 1440
+        'h-4 w-4': size === 'sm',
+        'h-5 w-5': size === 'md',
+        'h-6 w-6': size === 'lg',
+        'h-7 w-7': size === 'xl',
+        'h-6 w-6': size === 'full'
       }"
       viewBox="0 0 20 20"
       fill="currentColor"
@@ -58,28 +54,16 @@
         clip-rule="evenodd"
       />
     </svg>
-    <span
-      :class="{
-        'hidden sm:inline': window.innerWidth < 768,
-        'inline': window.innerWidth >= 768
-      }"
-      >Emergency Exit</span
-    >
+    <span x-text="label"></span>
   </button>
-
   <!-- Gentle tooltip -->
   <div
     x-show="hover"
     x-transition:enter="transition ease-out duration-300"
     x-transition:enter-start="opacity-0 transform -translate-y-2"
     x-transition:enter-end="opacity-100 transform translate-y-0"
-    :class="{
-      'absolute transform -translate-x-1/2 bg-selenite-white-50 text-grey-800 text-caption px-sm py-xs rounded-md shadow-soft whitespace-nowrap': true,
-      'bottom-full -translate-y-2 mb-2': tooltipPosition === 'top',
-      'top-full translate-y-2 mt-2': tooltipPosition === 'bottom',
-      'left-1/2': true
-    }"
+    class="absolute bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2 bg-selenite-white-50 text-grey-800 text-caption px-sm py-xs rounded-md shadow-soft mb-2 whitespace-nowrap z-50"
   >
-    Click to exit immediately
+    <span x-text="tooltip"></span>
   </div>
 </div>

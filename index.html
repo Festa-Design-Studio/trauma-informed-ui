@@ -10,7 +10,7 @@
       rel="stylesheet"
     />
     <!-- Import main.js which includes CSS and Alpine.js setup -->
-    <script type="module" crossorigin src="/trauma-informed-ui/assets/main-RQRoSPNR.js"></script>
+    <script type="module" crossorigin src="/trauma-informed-ui/assets/main-CwqkcaSK.js"></script>
     <link rel="stylesheet" crossorigin href="/trauma-informed-ui/assets/main-BbN2WATJ.css">
   </head>
   <body class="bg-selenite-white-50 min-h-screen p-8">
@@ -93,9 +93,11 @@
         empowering user interfaces
       </p>
     </header>
-
-    <main class="max-w-4xl mx-auto space-y-16">
-      <div class="bg-gradient-selenite rounded-lg border border-grey-200 p-8">
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto space-y-16 overflow-visible">
+      <div
+        class="bg-gradient-selenite rounded-lg border border-grey-200 p-8 pb-16 sm:pb-20"
+      >
         <div class="text-center space-y-6">
           <p
             class="font-montserrat text-grey-800 text-body-large max-w-2xl mx-auto"
@@ -105,8 +107,8 @@
             supportive messaging.
           </p>
           <div
-            x-data="primaryButton({ size: 'lg', label: 'Explore components', action: () => window.location.href = './src/components/atomic-structure.html' })"
-            class="inline-block"
+            x-data="primaryButton({ size: 'lg', label: 'Explore components', action: () => window.location.href = './src/components/atomic-structure.html', tooltip: 'View our component library' })"
+            class="inline-block relative"
           >
             <button
               @mouseenter="hover = true"
@@ -138,18 +140,25 @@
                 />
               </svg>
             </button>
-          </div>
-          <!-- Gentle tooltip -->
-          <div
-            x-show="hover"
-            x-transition:enter="transition ease-out duration-300"
-            x-transition:enter-start="opacity-0 transform -translate-y-2"
-            x-transition:enter-end="opacity-100 transform translate-y-0"
-            class="absolute mt-2 bg-white text-grey-800 text-caption px-sm py-xs rounded-md shadow-soft mx-md"
-          >
-            View our component library
+            <!-- Gentle tooltip (bottom) -->
+            <div
+              x-show="hover"
+              x-transition:enter="transition ease-out duration-300"
+              x-transition:enter-start="opacity-0 transform translate-y-2"
+              x-transition:enter-end="opacity-100 transform translate-y-0"
+              class="absolute top-full left-1/2 transform -translate-x-1/2 translate-y-2 bg-white text-grey-800 text-caption px-sm py-xs rounded-md shadow-soft mt-2 whitespace-nowrap z-50"
+            >
+              <span x-text="tooltip"></span>
+            </div>
           </div>
         </div>
+      </div>
+
+      <!-- Example tertiary button usage -->
+      <div
+        x-data="tertiaryButton({ size: 'md', label: 'Skip', tooltip: 'Skip this step' })"
+      >
+        <template x-include="buttons/tertiary-button.html"></template>
       </div>
     </main>
 

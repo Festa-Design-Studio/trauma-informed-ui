@@ -8,7 +8,7 @@
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <script type="module" crossorigin src="/trauma-informed-ui/assets/main-RQRoSPNR.js"></script>
+    <script type="module" crossorigin src="/trauma-informed-ui/assets/main-CwqkcaSK.js"></script>
     <link rel="stylesheet" crossorigin href="/trauma-informed-ui/assets/main-BbN2WATJ.css">
   </head>
   <body class="bg-selenite-white-50 min-h-screen p-8">
@@ -258,159 +258,166 @@
               </ul>
             </div>
 
-            <div class="py-xl">
-              <!-- Button Component -->
-              <div x-data="emergencyExit">
-                <!-- Size Variations Display -->
+            <div
+              class="py-xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg mb-xl justify-items-center"
+            >
+              <div
+                x-data="emergencyExitButton({ size: 'sm', label: 'Emergency Exit', tooltip: 'Click to exit immediately' })"
+              >
                 <div
-                  class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg mb-xl justify-items-center"
+                  :class="{ 'inline-block relative': size !== 'full', 'w-full': size === 'full' }"
                 >
-                  <!-- Small Button -->
-                  <div class="flex flex-col items-center space-y-sm">
-                    <span class="font-montserrat text-caption text-grey-700"
-                      >Small (sm)</span
+                  <button
+                    @mouseenter="hover = true"
+                    @mouseleave="hover = false"
+                    @focus="hover = true"
+                    @blur="hover = false"
+                    @click="action()"
+                    :class="{ 'bg-rhodochrosite-rose hover:bg-rhodochrosite-rose-600 text-white rounded-md shadow-soft transition-all duration flex items-center justify-center': true, 'transform scale-[1.02]': hover, 'px-sm py-xs text-small min-h-[44px] min-w-[44px] space-x-2': size === 'sm', 'px-md py-sm text-base min-h-[44px] space-x-2': size === 'md', 'px-lg py-md text-h4-mobile md:text-h4-tablet lg:text-h4-desktop min-h-[52px] space-x-3': size === 'lg', 'px-xl py-lg text-h3-mobile md:text-h3-tablet lg:text-h3-desktop min-h-[60px] space-x-4': size === 'xl', 'w-full': size === 'full' }"
+                    aria-label="Emergency exit - Click to leave immediately"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      :class="{ 'h-4 w-4': size === 'sm', 'h-5 w-5': size === 'md', 'h-6 w-6': size === 'lg', 'h-7 w-7': size === 'xl', 'h-6 w-6': size === 'full' }"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
                     >
-                    <div x-data="{ hover: false }" class="relative">
-                      <button
-                        @mouseenter="hover = true"
-                        @mouseleave="hover = false"
-                        @focus="hover = true"
-                        @blur="hover = false"
-                        @click="exit()"
-                        class="bg-rhodochrosite-rose hover:bg-rhodochrosite-rose-600 text-selenite-white-50 px-sm py-xs rounded-md shadow-soft transition-all duration-300 flex items-center space-x-2 text-small"
-                        aria-label="Emergency exit - Click to leave immediately"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          :class="{
-                            'h-4 w-4': window.innerWidth < 768,
-                            'h-5 w-5': window.innerWidth >= 768 && window.innerWidth < 1024,
-                            'h-6 w-6': window.innerWidth >= 1024 && window.innerWidth < 1440,
-                            'h-7 w-7': window.innerWidth >= 1440
-                          }"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                        <span>Emergency Exit</span>
-                      </button>
-                    </div>
+                      <path
+                        fill-rule="evenodd"
+                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    <span x-text="label"></span>
+                  </button>
+                  <div
+                    x-show="hover"
+                    x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 transform -translate-y-2"
+                    x-transition:enter-end="opacity-100 transform translate-y-0"
+                    class="absolute bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2 bg-selenite-white-50 text-grey-800 text-caption px-sm py-xs rounded-md shadow-soft mb-2 whitespace-nowrap z-50"
+                  >
+                    <span x-text="tooltip"></span>
                   </div>
-
-                  <!-- Medium Button (Default) -->
-                  <div class="flex flex-col items-center space-y-sm">
-                    <span class="font-montserrat text-caption text-grey-700"
-                      >Medium (md) - Default</span
+                </div>
+              </div>
+              <div
+                x-data="emergencyExitButton({ size: 'md', label: 'Emergency Exit', tooltip: 'Click to exit immediately' })"
+              >
+                <div
+                  :class="{ 'inline-block relative': size !== 'full', 'w-full': size === 'full' }"
+                >
+                  <button
+                    @mouseenter="hover = true"
+                    @mouseleave="hover = false"
+                    @focus="hover = true"
+                    @blur="hover = false"
+                    @click="action()"
+                    :class="{ 'bg-rhodochrosite-rose hover:bg-rhodochrosite-rose-600 text-white rounded-md shadow-soft transition-all duration flex items-center justify-center': true, 'transform scale-[1.02]': hover, 'px-sm py-xs text-small min-h-[44px] min-w-[44px] space-x-2': size === 'sm', 'px-md py-sm text-base min-h-[44px] space-x-2': size === 'md', 'px-lg py-md text-h4-mobile md:text-h4-tablet lg:text-h4-desktop min-h-[52px] space-x-3': size === 'lg', 'px-xl py-lg text-h3-mobile md:text-h3-tablet lg:text-h3-desktop min-h-[60px] space-x-4': size === 'xl', 'w-full': size === 'full' }"
+                    aria-label="Emergency exit - Click to leave immediately"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      :class="{ 'h-4 w-4': size === 'sm', 'h-5 w-5': size === 'md', 'h-6 w-6': size === 'lg', 'h-7 w-7': size === 'xl', 'h-6 w-6': size === 'full' }"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
                     >
-                    <div x-data="{ hover: false }" class="relative">
-                      <button
-                        @mouseenter="hover = true"
-                        @mouseleave="hover = false"
-                        @focus="hover = true"
-                        @blur="hover = false"
-                        @click="exit()"
-                        class="bg-rhodochrosite-rose hover:bg-rhodochrosite-rose-600 text-selenite-white-50 px-md py-sm rounded-md shadow-soft transition-all duration-300 flex items-center space-x-2"
-                        aria-label="Emergency exit - Click to leave immediately"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          :class="{
-                            'h-4 w-4': window.innerWidth < 768,
-                            'h-5 w-5': window.innerWidth >= 768 && window.innerWidth < 1024,
-                            'h-6 w-6': window.innerWidth >= 1024 && window.innerWidth < 1440,
-                            'h-7 w-7': window.innerWidth >= 1440
-                          }"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                        <span>Emergency Exit</span>
-                      </button>
-                    </div>
+                      <path
+                        fill-rule="evenodd"
+                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    <span x-text="label"></span>
+                  </button>
+                  <div
+                    x-show="hover"
+                    x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 transform -translate-y-2"
+                    x-transition:enter-end="opacity-100 transform translate-y-0"
+                    class="absolute bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2 bg-selenite-white-50 text-grey-800 text-caption px-sm py-xs rounded-md shadow-soft mb-2 whitespace-nowrap z-50"
+                  >
+                    <span x-text="tooltip"></span>
                   </div>
-
-                  <!-- Large Button -->
-                  <div class="flex flex-col items-center space-y-sm">
-                    <span class="font-montserrat text-caption text-grey-700"
-                      >Large (lg)</span
+                </div>
+              </div>
+              <div
+                x-data="emergencyExitButton({ size: 'lg', label: 'Emergency Exit', tooltip: 'Click to exit immediately' })"
+              >
+                <div
+                  :class="{ 'inline-block relative': size !== 'full', 'w-full': size === 'full' }"
+                >
+                  <button
+                    @mouseenter="hover = true"
+                    @mouseleave="hover = false"
+                    @focus="hover = true"
+                    @blur="hover = false"
+                    @click="action()"
+                    :class="{ 'bg-rhodochrosite-rose hover:bg-rhodochrosite-rose-600 text-white rounded-md shadow-soft transition-all duration flex items-center justify-center': true, 'transform scale-[1.02]': hover, 'px-sm py-xs text-small min-h-[44px] min-w-[44px] space-x-2': size === 'sm', 'px-md py-sm text-base min-h-[44px] space-x-2': size === 'md', 'px-lg py-md text-h4-mobile md:text-h4-tablet lg:text-h4-desktop min-h-[52px] space-x-3': size === 'lg', 'px-xl py-lg text-h3-mobile md:text-h3-tablet lg:text-h3-desktop min-h-[60px] space-x-4': size === 'xl', 'w-full': size === 'full' }"
+                    aria-label="Emergency exit - Click to leave immediately"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      :class="{ 'h-4 w-4': size === 'sm', 'h-5 w-5': size === 'md', 'h-6 w-6': size === 'lg', 'h-7 w-7': size === 'xl', 'h-6 w-6': size === 'full' }"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
                     >
-                    <div x-data="{ hover: false }" class="relative">
-                      <button
-                        @mouseenter="hover = true"
-                        @mouseleave="hover = false"
-                        @focus="hover = true"
-                        @blur="hover = false"
-                        @click="exit()"
-                        class="bg-rhodochrosite-rose hover:bg-rhodochrosite-rose-600 text-selenite-white-50 px-lg py-md rounded-md shadow-soft transition-all duration-300 flex items-center space-x-2 text-lg"
-                        aria-label="Emergency exit - Click to leave immediately"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          :class="{
-                            'h-4 w-4': window.innerWidth < 768,
-                            'h-5 w-5': window.innerWidth >= 768 && window.innerWidth < 1024,
-                            'h-6 w-6': window.innerWidth >= 1024 && window.innerWidth < 1440,
-                            'h-7 w-7': window.innerWidth >= 1440
-                          }"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                        <span>Emergency Exit</span>
-                      </button>
-                    </div>
+                      <path
+                        fill-rule="evenodd"
+                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    <span x-text="label"></span>
+                  </button>
+                  <div
+                    x-show="hover"
+                    x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 transform -translate-y-2"
+                    x-transition:enter-end="opacity-100 transform translate-y-0"
+                    class="absolute bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2 bg-selenite-white-50 text-grey-800 text-caption px-sm py-xs rounded-md shadow-soft mb-2 whitespace-nowrap z-50"
+                  >
+                    <span x-text="tooltip"></span>
                   </div>
-
-                  <!-- Extra Large Button -->
-                  <div class="flex flex-col items-center space-y-sm">
-                    <span class="font-montserrat text-caption text-grey-700"
-                      >Extra Large (xl)</span
+                </div>
+              </div>
+              <div
+                x-data="emergencyExitButton({ size: 'xl', label: 'Emergency Exit', tooltip: 'Click to exit immediately' })"
+              >
+                <div
+                  :class="{ 'inline-block relative': size !== 'full', 'w-full': size === 'full' }"
+                >
+                  <button
+                    @mouseenter="hover = true"
+                    @mouseleave="hover = false"
+                    @focus="hover = true"
+                    @blur="hover = false"
+                    @click="action()"
+                    :class="{ 'bg-rhodochrosite-rose hover:bg-rhodochrosite-rose-600 text-white rounded-md shadow-soft transition-all duration flex items-center justify-center': true, 'transform scale-[1.02]': hover, 'px-sm py-xs text-small min-h-[44px] min-w-[44px] space-x-2': size === 'sm', 'px-md py-sm text-base min-h-[44px] space-x-2': size === 'md', 'px-lg py-md text-h4-mobile md:text-h4-tablet lg:text-h4-desktop min-h-[52px] space-x-3': size === 'lg', 'px-xl py-lg text-h3-mobile md:text-h3-tablet lg:text-h3-desktop min-h-[60px] space-x-4': size === 'xl', 'w-full': size === 'full' }"
+                    aria-label="Emergency exit - Click to leave immediately"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      :class="{ 'h-4 w-4': size === 'sm', 'h-5 w-5': size === 'md', 'h-6 w-6': size === 'lg', 'h-7 w-7': size === 'xl', 'h-6 w-6': size === 'full' }"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
                     >
-                    <div x-data="{ hover: false }" class="relative">
-                      <button
-                        @mouseenter="hover = true"
-                        @mouseleave="hover = false"
-                        @focus="hover = true"
-                        @blur="hover = false"
-                        @click="exit()"
-                        class="bg-rhodochrosite-rose hover:bg-rhodochrosite-rose-600 text-selenite-white-50 px-xl py-lg rounded-md shadow-soft transition-all duration-300 flex items-center space-x-2 text-xl"
-                        aria-label="Emergency exit - Click to leave immediately"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          :class="{
-                            'h-4 w-4': window.innerWidth < 768,
-                            'h-5 w-5': window.innerWidth >= 768 && window.innerWidth < 1024,
-                            'h-6 w-6': window.innerWidth >= 1024 && window.innerWidth < 1440,
-                            'h-7 w-7': window.innerWidth >= 1440
-                          }"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                        <span>Emergency Exit</span>
-                      </button>
-                    </div>
+                      <path
+                        fill-rule="evenodd"
+                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    <span x-text="label"></span>
+                  </button>
+                  <div
+                    x-show="hover"
+                    x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 transform -translate-y-2"
+                    x-transition:enter-end="opacity-100 transform translate-y-0"
+                    class="absolute bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2 bg-selenite-white-50 text-grey-800 text-caption px-sm py-xs rounded-md shadow-soft mb-2 whitespace-nowrap z-50"
+                  >
+                    <span x-text="tooltip"></span>
                   </div>
                 </div>
               </div>
@@ -526,229 +533,57 @@
                 </li>
               </ul>
             </div>
-            <!-- Button Component -->
-            <div class="space-y-8">
-              <!-- Size Variations Grid -->
-              <div
-                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg mb-xl"
-              >
-                <!-- Small Button -->
-                <div class="flex flex-col items-center space-y-sm">
-                  <span class="font-montserrat text-caption text-grey-700"
-                    >Small (sm)</span
-                  >
-                  <div
-                    x-data="primaryButton({ size: 'sm' })"
-                    class="inline-block"
-                  >
-                    <button
-                      @mouseenter="hover = true"
-                      @mouseleave="hover = false"
-                      @focus="hover = true"
-                      @blur="hover = false"
-                      :class="{
-                        'bg-chrysocolla-green hover:bg-chrysocolla-green-600 text-selenite-white-50 rounded-md shadow-soft transition-all duration flex items-center justify-center': true,
-                        'transform scale-[1.02]': hover,
-                        'px-sm py-xs text-small min-h-[44px] min-w-[44px] space-x-2': size === 'sm',
-                        'px-md py-sm text-base min-h-[44px] space-x-2': size === 'md',
-                        'px-lg py-md text-h4-mobile md:text-h4-tablet lg:text-h4-desktop min-h-[52px] space-x-3': size === 'lg',
-                        'px-xl py-lg text-h3-mobile md:text-h3-tablet lg:text-h3-desktop min-h-[60px] space-x-4': size === 'xl'
-                      }"
-                    >
-                      <span x-text="label"></span>
-                      <svg
-                        x-show="hover"
-                        x-transition:enter="transition ease-out duration"
-                        x-transition:enter-start="opacity-0 transform translate-x-1"
-                        x-transition:enter-end="opacity-100 transform translate-x-0"
-                        xmlns="http://www.w3.org/2000/svg"
-                        :class="{
-                          'h-4 w-4': size === 'sm',
-                          'h-5 w-5': size === 'md',
-                          'h-6 w-6': size === 'lg',
-                          'h-7 w-7': size === 'xl'
-                        }"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                    </button>
-                  </div>
+            <!-- Primary Button Demo Section -->
+            <div class="py-xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg mb-xl justify-items-center">
+              <div x-data="primaryButton({ size: 'sm', label: 'Continue', tooltip: 'Click to proceed' })">
+                <div :class="{ 'inline-block relative': size !== 'full', 'w-full': size === 'full' }">
+                  <button @mouseenter="hover = true" @mouseleave="hover = false" @focus="hover = true" @blur="hover = false" @click="action()" :class="{ 'bg-chrysocolla-green hover:bg-chrysocolla-green-600 text-selenite-white-50 rounded-md shadow-soft transition-all duration flex items-center justify-center': true, 'transform scale-[1.02]': hover, 'px-sm py-xs text-small min-h-[44px] min-w-[44px] space-x-2': size === 'sm', 'px-md py-sm text-base min-h-[44px] space-x-2': size === 'md', 'px-lg py-md text-h4-mobile md:text-h4-tablet lg:text-h4-desktop min-h-[52px] space-x-3': size === 'lg', 'px-xl py-lg text-h3-mobile md:text-h3-tablet lg:text-h3-desktop min-h-[60px] space-x-4': size === 'xl', 'w-full': size === 'full' }">
+                  <span x-text="label"></span>
+                  <svg x-show="hover" x-transition:enter="transition ease-out duration" x-transition:enter-start="opacity-0 transform translate-x-1" x-transition:enter-end="opacity-100 transform translate-x-0" xmlns="http://www.w3.org/2000/svg" :class="{ 'h-4 w-4': size === 'sm', 'h-5 w-5': size === 'md', 'h-6 w-6': size === 'lg', 'h-7 w-7': size === 'xl', 'h-6 w-6': size === 'full' }" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
                 </div>
-                <!-- Medium Button -->
-                <div class="flex flex-col items-center space-y-sm">
-                  <span class="font-montserrat text-caption text-grey-700"
-                    >Medium (md) - Default</span
-                  >
-                  <div
-                    x-data="primaryButton({ size: 'md' })"
-                    class="inline-block"
-                  >
-                    <button
-                      @mouseenter="hover = true"
-                      @mouseleave="hover = false"
-                      @focus="hover = true"
-                      @blur="hover = false"
-                      :class="{
-                        'bg-chrysocolla-green hover:bg-chrysocolla-green-600 text-selenite-white-50 rounded-md shadow-soft transition-all duration flex items-center justify-center': true,
-                        'transform scale-[1.02]': hover,
-                        'px-md py-sm text-base min-h-[44px] space-x-2': size === 'md',
-                        'px-lg py-md text-h4-mobile md:text-h4-tablet lg:text-h4-desktop min-h-[52px] space-x-3': size === 'lg',
-                        'px-xl py-lg text-h3-mobile md:text-h3-tablet lg:text-h3-desktop min-h-[60px] space-x-4': size === 'xl'
-                      }"
-                    >
-                      <span x-text="label"></span>
-                      <svg
-                        x-show="hover"
-                        x-transition:enter="transition ease-out duration"
-                        x-transition:enter-start="opacity-0 transform translate-x-1"
-                        x-transition:enter-end="opacity-100 transform translate-x-0"
-                        xmlns="http://www.w3.org/2000/svg"
-                        :class="{
-                          'h-5 w-5': size === 'md',
-                          'h-6 w-6': size === 'lg',
-                          'h-7 w-7': size === 'xl'
-                        }"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                    </button>
-                  </div>
+                <div x-show="hover" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class="absolute bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2 bg-selenite-white-50 text-grey-800 text-caption px-sm py-xs rounded-md shadow-soft mb-2 whitespace-nowrap z-50">
+                  <span x-text="tooltip"></span>
                 </div>
-                <!-- Large Button -->
-                <div class="flex flex-col items-center space-y-sm">
-                  <span class="font-montserrat text-caption text-grey-700"
-                    >Large (lg)</span
-                  >
-                  <div
-                    x-data="primaryButton({ size: 'lg' })"
-                    class="inline-block"
-                  >
-                    <button
-                      @mouseenter="hover = true"
-                      @mouseleave="hover = false"
-                      @focus="hover = true"
-                      @blur="hover = false"
-                      :class="{
-                        'bg-chrysocolla-green hover:bg-chrysocolla-green-600 text-selenite-white-50 rounded-md shadow-soft transition-all duration flex items-center justify-center': true,
-                        'transform scale-[1.02]': hover,
-                        'px-lg py-md text-h4-mobile md:text-h4-tablet lg:text-h4-desktop min-h-[52px] space-x-3': size === 'lg',
-                        'px-xl py-lg text-h3-mobile md:text-h3-tablet lg:text-h3-desktop min-h-[60px] space-x-4': size === 'xl'
-                      }"
-                    >
-                      <span x-text="label"></span>
-                      <svg
-                        x-show="hover"
-                        x-transition:enter="transition ease-out duration"
-                        x-transition:enter-start="opacity-0 transform translate-x-1"
-                        x-transition:enter-end="opacity-100 transform translate-x-0"
-                        xmlns="http://www.w3.org/2000/svg"
-                        :class="{
-                          'h-6 w-6': size === 'lg',
-                          'h-7 w-7': size === 'xl'
-                        }"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-                <!-- Extra Large Button -->
-                <div class="flex flex-col items-center space-y-sm">
-                  <span class="font-montserrat text-caption text-grey-700"
-                    >Extra Large (xl)</span
-                  >
-                  <div
-                    x-data="primaryButton({ size: 'xl' })"
-                    class="inline-block"
-                  >
-                    <button
-                      @mouseenter="hover = true"
-                      @mouseleave="hover = false"
-                      @focus="hover = true"
-                      @blur="hover = false"
-                      :class="{
-                        'bg-chrysocolla-green hover:bg-chrysocolla-green-600 text-selenite-white-50 rounded-md shadow-soft transition-all duration flex items-center justify-center': true,
-                        'transform scale-[1.02]': hover,
-                        'px-xl py-lg text-h3-mobile md:text-h3-tablet lg:text-h3-desktop min-h-[60px] space-x-4': size === 'xl'
-                      }"
-                    >
-                      <span x-text="label"></span>
-                      <svg
-                        x-show="hover"
-                        x-transition:enter="transition ease-out duration"
-                        x-transition:enter-start="opacity-0 transform translate-x-1"
-                        x-transition:enter-end="opacity-100 transform translate-x-0"
-                        xmlns="http://www.w3.org/2000/svg"
-                        :class="{
-                          'h-7 w-7': size === 'xl'
-                        }"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                    </button>
+              </div>
+              <div x-data="primaryButton({ size: 'md', label: 'Continue Learning', tooltip: 'Click to proceed' })">
+                <div :class="{ 'inline-block relative': size !== 'full', 'w-full': size === 'full' }">
+                  <button @mouseenter="hover = true" @mouseleave="hover = false" @focus="hover = true" @blur="hover = false" @click="action()" :class="{ 'bg-chrysocolla-green hover:bg-chrysocolla-green-600 text-selenite-white-50 rounded-md shadow-soft transition-all duration flex items-center justify-center': true, 'transform scale-[1.02]': hover, 'px-sm py-xs text-small min-h-[44px] min-w-[44px] space-x-2': size === 'sm', 'px-md py-sm text-base min-h-[44px] space-x-2': size === 'md', 'px-lg py-md text-h4-mobile md:text-h4-tablet lg:text-h4-desktop min-h-[52px] space-x-3': size === 'lg', 'px-xl py-lg text-h3-mobile md:text-h3-tablet lg:text-h3-desktop min-h-[60px] space-x-4': size === 'xl', 'w-full': size === 'full' }">
+                    <span x-text="label"></span>
+                    <svg x-show="hover" x-transition:enter="transition ease-out duration" x-transition:enter-start="opacity-0 transform translate-x-1" x-transition:enter-end="opacity-100 transform translate-x-0" xmlns="http://www.w3.org/2000/svg" :class="{ 'h-4 w-4': size === 'sm', 'h-5 w-5': size === 'md', 'h-6 w-6': size === 'lg', 'h-7 w-7': size === 'xl', 'h-6 w-6': size === 'full' }" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                  <div x-show="hover" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class="absolute bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2 bg-selenite-white-50 text-grey-800 text-caption px-sm py-xs rounded-md shadow-soft mb-2 whitespace-nowrap z-50">
+                    <span x-text="tooltip"></span>
                   </div>
                 </div>
               </div>
-
-              <!-- Full Width Button -->
-              <div class="space-y-sm">
-                <span class="font-montserrat text-caption text-grey-700"
-                  >Full Width</span
-                >
-                <div x-data="primaryButton({ size: 'full' })" class="w-full">
-                  <button
-                    @mouseenter="hover = true"
-                    @mouseleave="hover = false"
-                    @focus="hover = true"
-                    @blur="hover = false"
-                    :class="{
-                      'bg-chrysocolla-green hover:bg-chrysocolla-green-600 text-selenite-white-50 rounded-md shadow-soft transition-all duration flex items-center justify-center w-full': true,
-                      'transform scale-[1.02]': hover,
-                      'px-md py-sm text-base min-h-[44px] space-x-2': true
-                    }"
-                  >
+              <div x-data="primaryButton({ size: 'lg', label: 'Continue Learning', tooltip: 'Click to proceed' })">
+                <div :class="{ 'inline-block relative': size !== 'full', 'w-full': size === 'full' }">
+                  <button @mouseenter="hover = true" @mouseleave="hover = false" @focus="hover = true" @blur="hover = false" @click="action()" :class="{ 'bg-chrysocolla-green hover:bg-chrysocolla-green-600 text-selenite-white-50 rounded-md shadow-soft transition-all duration flex items-center justify-center': true, 'transform scale-[1.02]': hover, 'px-sm py-xs text-small min-h-[44px] min-w-[44px] space-x-2': size === 'sm', 'px-md py-sm text-base min-h-[44px] space-x-2': size === 'md', 'px-lg py-md text-h4-mobile md:text-h4-tablet lg:text-h4-desktop min-h-[52px] space-x-3': size === 'lg', 'px-xl py-lg text-h3-mobile md:text-h3-tablet lg:text-h3-desktop min-h-[60px] space-x-4': size === 'xl', 'w-full': size === 'full' }">
                     <span x-text="label"></span>
-                    <svg
-                      x-show="hover"
-                      x-transition:enter="transition ease-out duration"
-                      x-transition:enter-start="opacity-0 transform translate-x-1"
-                      x-transition:enter-end="opacity-100 transform translate-x-0"
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="h-6 w-6"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                        clip-rule="evenodd"
-                      />
+                    <svg x-show="hover" x-transition:enter="transition ease-out duration" x-transition:enter-start="opacity-0 transform translate-x-1" x-transition:enter-end="opacity-100 transform translate-x-0" xmlns="http://www.w3.org/2000/svg" :class="{ 'h-4 w-4': size === 'sm', 'h-5 w-5': size === 'md', 'h-6 w-6': size === 'lg', 'h-7 w-7': size === 'xl', 'h-6 w-6': size === 'full' }" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
                     </svg>
                   </button>
+                  <div x-show="hover" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class="absolute bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2 bg-selenite-white-50 text-grey-800 text-caption px-sm py-xs rounded-md shadow-soft mb-2 whitespace-nowrap z-50">
+                    <span x-text="tooltip"></span>
+                  </div>
+                </div>
+              </div>
+              <div x-data="primaryButton({ size: 'xl', label: 'Continue Learning', tooltip: 'Click to proceed' })">
+                <div :class="{ 'inline-block relative': size !== 'full', 'w-full': size === 'full' }">
+                  <button @mouseenter="hover = true" @mouseleave="hover = false" @focus="hover = true" @blur="hover = false" @click="action()" :class="{ 'bg-chrysocolla-green hover:bg-chrysocolla-green-600 text-selenite-white-50 rounded-md shadow-soft transition-all duration flex items-center justify-center': true, 'transform scale-[1.02]': hover, 'px-sm py-xs text-small min-h-[44px] min-w-[44px] space-x-2': size === 'sm', 'px-md py-sm text-base min-h-[44px] space-x-2': size === 'md', 'px-lg py-md text-h4-mobile md:text-h4-tablet lg:text-h4-desktop min-h-[52px] space-x-3': size === 'lg', 'px-xl py-lg text-h3-mobile md:text-h3-tablet lg:text-h3-desktop min-h-[60px] space-x-4': size === 'xl', 'w-full': size === 'full' }">
+                    <span x-text="label"></span>
+                    <svg x-show="hover" x-transition:enter="transition ease-out duration" x-transition:enter-start="opacity-0 transform translate-x-1" x-transition:enter-end="opacity-100 transform translate-x-0" xmlns="http://www.w3.org/2000/svg" :class="{ 'h-4 w-4': size === 'sm', 'h-5 w-5': size === 'md', 'h-6 w-6': size === 'lg', 'h-7 w-7': size === 'xl', 'h-6 w-6': size === 'full' }" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                  <div x-show="hover" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class="absolute bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2 bg-selenite-white-50 text-grey-800 text-caption px-sm py-xs rounded-md shadow-soft mb-2 whitespace-nowrap z-50">
+                    <span x-text="tooltip"></span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -856,187 +691,100 @@
                 </li>
               </ul>
             </div>
-            <!-- Button Component -->
-            <div x-data="secondaryButton">
-              <!-- Size Variations Display -->
-              <div
-                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg mb-xl"
-              >
-                <!-- Small Button -->
-                <div class="flex flex-col items-center space-y-sm">
-                  <span class="font-montserrat text-caption text-grey-700"
-                    >Small (sm)</span
-                  >
-                  <div x-data="{ hover: false }" class="inline-block">
-                    <button
-                      @mouseenter="hover = true"
-                      @mouseleave="hover = false"
-                      @focus="hover = true"
-                      @blur="hover = false"
-                      class="border-2 border-chrysocolla-green text-chrysocolla-green hover:bg-chrysocolla-green-50 px-sm py-xs rounded-md transition-all duration-300 flex items-center justify-center space-x-2 text-small"
-                      :class="{ 'transform scale-[1.02]': hover }"
-                    >
-                      <span>Learn</span>
-                      <svg
-                        x-show="hover"
-                        x-transition:enter="transition ease-out duration-300"
-                        x-transition:enter-start="opacity-0 transform translate-x-1"
-                        x-transition:enter-end="opacity-100 transform translate-x-0"
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-4 w-4"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M6.672 1.911a1 1 0 10-1.932.518l.259.966a1 1 0 001.932-.518l-.26-.966zM2.429 4.74a1 1 0 10-.517 1.932l.966.259a1 1 0 00.517-1.932l-.966-.26zm8.814-.569a1 1 0 00-1.415-1.414l-.707.707a1 1 0 101.415 1.415l.707-.708zm-7.071 7.072l.707-.707A1 1 0 003.465 9.12l-.708.707a1 1 0 001.415 1.415zm3.2-5.171a1 1 0 00-1.3 1.3l4 10a1 1 0 001.823.075l1.38-2.759 3.018 3.02a1 1 0 001.414-1.415l-3.019-3.02 2.76-1.379a1 1 0 00-.076-1.822l-10-4z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-
-                <!-- Medium Button (Default) -->
-                <div class="flex flex-col items-center space-y-sm">
-                  <span class="font-montserrat text-caption text-grey-700"
-                    >Medium (md) - Default</span
-                  >
-                  <div x-data="{ hover: false }" class="inline-block">
-                    <button
-                      @mouseenter="hover = true"
-                      @mouseleave="hover = false"
-                      @focus="hover = true"
-                      @blur="hover = false"
-                      class="border-2 border-chrysocolla-green text-chrysocolla-green hover:bg-chrysocolla-green-50 px-md py-sm rounded-md transition-all duration-300 flex items-center justify-center space-x-2"
-                      :class="{ 'transform scale-[1.02]': hover }"
-                    >
-                      <span>Learn More</span>
-                      <svg
-                        x-show="hover"
-                        x-transition:enter="transition ease-out duration-300"
-                        x-transition:enter-start="opacity-0 transform translate-x-1"
-                        x-transition:enter-end="opacity-100 transform translate-x-0"
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-5 w-5"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M6.672 1.911a1 1 0 10-1.932.518l.259.966a1 1 0 001.932-.518l-.26-.966zM2.429 4.74a1 1 0 10-.517 1.932l.966.259a1 1 0 00.517-1.932l-.966-.26zm8.814-.569a1 1 0 00-1.415-1.414l-.707.707a1 1 0 101.415 1.415l.707-.708zm-7.071 7.072l.707-.707A1 1 0 003.465 9.12l-.708.707a1 1 0 001.415 1.415zm3.2-5.171a1 1 0 00-1.3 1.3l4 10a1 1 0 001.823.075l1.38-2.759 3.018 3.02a1 1 0 001.414-1.415l-3.019-3.02 2.76-1.379a1 1 0 00-.076-1.822l-10-4z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-
-                <!-- Large Button -->
-                <div class="flex flex-col items-center space-y-sm">
-                  <span class="font-montserrat text-caption text-grey-700"
-                    >Large (lg)</span
-                  >
-                  <div x-data="{ hover: false }" class="inline-block">
-                    <button
-                      @mouseenter="hover = true"
-                      @mouseleave="hover = false"
-                      @focus="hover = true"
-                      @blur="hover = false"
-                      class="border-2 border-chrysocolla-green text-chrysocolla-green hover:bg-chrysocolla-green-50 px-lg py-md rounded-md transition-all duration-300 flex items-center justify-center space-x-2 text-lg"
-                      :class="{ 'transform scale-[1.02]': hover }"
-                    >
-                      <span>Learn More</span>
-                      <svg
-                        x-show="hover"
-                        x-transition:enter="transition ease-out duration-300"
-                        x-transition:enter-start="opacity-0 transform translate-x-1"
-                        x-transition:enter-end="opacity-100 transform translate-x-0"
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-6 w-6"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M6.672 1.911a1 1 0 10-1.932.518l.259.966a1 1 0 001.932-.518l-.26-.966zM2.429 4.74a1 1 0 10-.517 1.932l.966.259a1 1 0 00.517-1.932l-.966-.26zm8.814-.569a1 1 0 00-1.415-1.414l-.707.707a1 1 0 101.415 1.415l.707-.708zm-7.071 7.072l.707-.707A1 1 0 003.465 9.12l-.708.707a1 1 0 001.415 1.415zm3.2-5.171a1 1 0 00-1.3 1.3l4 10a1 1 0 001.823.075l1.38-2.759 3.018 3.02a1 1 0 001.414-1.415l-3.019-3.02 2.76-1.379a1 1 0 00-.076-1.822l-10-4z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-
-                <!-- Extra Large Button -->
-                <div class="flex flex-col items-center space-y-sm">
-                  <span class="font-montserrat text-caption text-grey-700"
-                    >Extra Large (xl)</span
-                  >
-                  <div x-data="{ hover: false }" class="inline-block">
-                    <button
-                      @mouseenter="hover = true"
-                      @mouseleave="hover = false"
-                      @focus="hover = true"
-                      @blur="hover = false"
-                      class="border-2 border-chrysocolla-green text-chrysocolla-green hover:bg-chrysocolla-green-50 px-xl py-lg rounded-md transition-all duration-300 flex items-center justify-center space-x-2 text-xl"
-                      :class="{ 'transform scale-[1.02]': hover }"
-                    >
-                      <span>Learn More</span>
-                      <svg
-                        x-show="hover"
-                        x-transition:enter="transition ease-out duration-300"
-                        x-transition:enter-start="opacity-0 transform translate-x-1"
-                        x-transition:enter-end="opacity-100 transform translate-x-0"
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-7 w-7"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M6.672 1.911a1 1 0 10-1.932.518l.259.966a1 1 0 001.932-.518l-.26-.966zM2.429 4.74a1 1 0 10-.517 1.932l.966.259a1 1 0 00.517-1.932l-.966-.26zm8.814-.569a1 1 0 00-1.415-1.414l-.707.707a1 1 0 101.415 1.415l.707-.708zm-7.071 7.072l.707-.707A1 1 0 003.465 9.12l-.708.707a1 1 0 001.415 1.415zm3.2-5.171a1 1 0 00-1.3 1.3l4 10a1 1 0 001.823.075l1.38-2.759 3.018 3.02a1 1 0 001.414-1.415l-3.019-3.02 2.76-1.379a1 1 0 00-.076-1.822l-10-4z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                    </button>
+            <!-- Secondary Button Demo Section -->
+            <div class="py-xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg mb-xl justify-items-center">
+              <div x-data="{ ...secondaryButton({ size: 'sm', label: 'Continue', tooltip: 'Click to proceed' }), hover: false }">
+                <div :class="{ 'inline-block relative': size !== 'full', 'w-full': size === 'full' }">
+                  <button @mouseenter="hover = true" @mouseleave="hover = false" @focus="hover = true" @blur="hover = false" @click="action()" 
+                    :class="{ 
+                      'bg-transparent border-2 border-chrysocolla-green-600 text-chrysocolla-green-600 rounded-md shadow-soft transition-all duration-300 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-chrysocolla-green-200 disabled:border-grey-300 disabled:text-grey-500': true,
+                      'hover:border-chrysocolla-green-700 hover:text-chrysocolla-green-700': !disabled,
+                      'transform scale-[1.02]': hover && !disabled,
+                      'px-sm py-xs text-small min-h-[44px] min-w-[44px] space-x-2': size === 'sm',
+                      'px-md py-sm text-base min-h-[44px] space-x-2': size === 'md',
+                      'px-lg py-md text-h4-mobile md:text-h4-tablet lg:text-h4-desktop min-h-[52px] space-x-3': size === 'lg',
+                      'px-xl py-lg text-h3-mobile md:text-h3-tablet lg:text-h3-desktop min-h-[60px] space-x-4': size === 'xl',
+                      'w-full': size === 'full'
+                    }">
+                    <span x-text="label"></span>
+                    <svg x-show="hover" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform translate-x-1" x-transition:enter-end="opacity-100 transform translate-x-0" xmlns="http://www.w3.org/2000/svg" :class="{ 'h-4 w-4': size === 'sm', 'h-5 w-5': size === 'md', 'h-6 w-6': size === 'lg', 'h-7 w-7': size === 'xl', 'h-6 w-6': size === 'full' }" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                  <div x-show="hover" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class="absolute bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2 bg-selenite-white-100 text-grey-700 text-caption px-sm py-xs rounded-md shadow-soft mb-2 whitespace-nowrap z-50">
+                    <span x-text="tooltip"></span>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-
-          <!-- Full Width Button -->
-          <div class="space-y-sm">
-            <span class="font-montserrat text-caption text-grey-700"
-              >Full Width</span
-            >
-            <div x-data="{ hover: false, size: 'full' }" class="w-full">
-              <button
-                @mouseenter="hover = true"
-                @mouseleave="hover = false"
-                @focus="hover = true"
-                @blur="hover = false"
-                class="border-2 border-chrysocolla-green text-chrysocolla-green hover:bg-chrysocolla-green-50 rounded-md transition-all duration-300 flex items-center justify-center w-full px-md py-sm text-base min-h-[44px] space-x-2"
-                :class="{ 'transform scale-[1.02]': hover }"
-              >
-                <span>Learn More</span>
-                <svg
-                  x-show="hover"
-                  x-transition:enter="transition ease-out duration-300"
-                  x-transition:enter-start="opacity-0 transform translate-x-1"
-                  x-transition:enter-end="opacity-100 transform translate-x-0"
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-6"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M6.672 1.911a1 1 0 10-1.932.518l.259.966a1 1 0 001.932-.518l-.26-.966zM2.429 4.74a1 1 0 10-.517 1.932l.966.259a1 1 0 00.517-1.932l-.966-.26zm8.814-.569a1 1 0 00-1.415-1.414l-.707.707a1 1 0 101.415 1.415l.707-.708zm-7.071 7.072l.707-.707A1 1 0 003.465 9.12l-.708.707a1 1 0 001.415 1.415zm3.2-5.171a1 1 0 00-1.3 1.3l4 10a1 1 0 001.823.075l1.38-2.759 3.018 3.02a1 1 0 001.414-1.415l-3.019-3.02 2.76-1.379a1 1 0 00-.076-1.822l-10-4z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </button>
+              <div x-data="{ ...secondaryButton({ size: 'md', label: 'Continue Secondary', tooltip: 'Click to proceed' }), hover: false }">
+                <div :class="{ 'inline-block relative': size !== 'full', 'w-full': size === 'full' }">
+                  <button @mouseenter="hover = true" @mouseleave="hover = false" @focus="hover = true" @blur="hover = false" @click="action()" 
+                    :class="{ 
+                      'bg-transparent border-2 border-chrysocolla-green-600 text-chrysocolla-green-600 rounded-md shadow-soft transition-all duration-300 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-chrysocolla-green-200 disabled:border-grey-300 disabled:text-grey-500': true,
+                      'hover:border-chrysocolla-green-700 hover:text-chrysocolla-green-700': !disabled,
+                      'transform scale-[1.02]': hover && !disabled,
+                      'px-sm py-xs text-small min-h-[44px] min-w-[44px] space-x-2': size === 'sm',
+                      'px-md py-sm text-base min-h-[44px] space-x-2': size === 'md',
+                      'px-lg py-md text-h4-mobile md:text-h4-tablet lg:text-h4-desktop min-h-[52px] space-x-3': size === 'lg',
+                      'px-xl py-lg text-h3-mobile md:text-h3-tablet lg:text-h3-desktop min-h-[60px] space-x-4': size === 'xl',
+                      'w-full': size === 'full'
+                    }">
+                    <span x-text="label"></span>
+                    <svg x-show="hover" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform translate-x-1" x-transition:enter-end="opacity-100 transform translate-x-0" xmlns="http://www.w3.org/2000/svg" :class="{ 'h-4 w-4': size === 'sm', 'h-5 w-5': size === 'md', 'h-6 w-6': size === 'lg', 'h-7 w-7': size === 'xl', 'h-6 w-6': size === 'full' }" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                  <div x-show="hover" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class="absolute bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2 bg-selenite-white-100 text-grey-700 text-caption px-sm py-xs rounded-md shadow-soft mb-2 whitespace-nowrap z-50">
+                    <span x-text="tooltip"></span>
+                  </div>
+                </div>
+              </div>
+              <div x-data="{ ...secondaryButton({ size: 'lg', label: 'Continue Secondary', tooltip: 'Click to proceed' }), hover: false }">
+                <div :class="{ 'inline-block relative': size !== 'full', 'w-full': size === 'full' }">
+                  <button @mouseenter="hover = true" @mouseleave="hover = false" @focus="hover = true" @blur="hover = false" @click="action()" 
+                    :class="{ 
+                      'bg-transparent border-2 border-chrysocolla-green-600 text-chrysocolla-green-600 rounded-md shadow-soft transition-all duration-300 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-chrysocolla-green-200 disabled:border-grey-300 disabled:text-grey-500': true,
+                      'hover:border-chrysocolla-green-700 hover:text-chrysocolla-green-700': !disabled,
+                      'transform scale-[1.02]': hover && !disabled,
+                      'px-sm py-xs text-small min-h-[44px] min-w-[44px] space-x-2': size === 'sm',
+                      'px-md py-sm text-base min-h-[44px] space-x-2': size === 'md',
+                      'px-lg py-md text-h4-mobile md:text-h4-tablet lg:text-h4-desktop min-h-[52px] space-x-3': size === 'lg',
+                      'px-xl py-lg text-h3-mobile md:text-h3-tablet lg:text-h3-desktop min-h-[60px] space-x-4': size === 'xl',
+                      'w-full': size === 'full'
+                    }">
+                    <span x-text="label"></span>
+                    <svg x-show="hover" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform translate-x-1" x-transition:enter-end="opacity-100 transform translate-x-0" xmlns="http://www.w3.org/2000/svg" :class="{ 'h-4 w-4': size === 'sm', 'h-5 w-5': size === 'md', 'h-6 w-6': size === 'lg', 'h-7 w-7': size === 'xl', 'h-6 w-6': size === 'full' }" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                  <div x-show="hover" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class="absolute bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2 bg-selenite-white-100 text-grey-700 text-caption px-sm py-xs rounded-md shadow-soft mb-2 whitespace-nowrap z-50">
+                    <span x-text="tooltip"></span>
+                  </div>
+                </div>
+              </div>
+              <div x-data="{ ...secondaryButton({ size: 'xl', label: 'Continue Secondary', tooltip: 'Click to proceed' }), hover: false }">
+                <div :class="{ 'inline-block relative': size !== 'full', 'w-full': size === 'full' }">
+                  <button @mouseenter="hover = true" @mouseleave="hover = false" @focus="hover = true" @blur="hover = false" @click="action()" 
+                    :class="{ 
+                      'bg-transparent border-2 border-chrysocolla-green-600 text-chrysocolla-green-600 rounded-md shadow-soft transition-all duration-300 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-chrysocolla-green-200 disabled:border-grey-300 disabled:text-grey-500': true,
+                      'hover:border-chrysocolla-green-700 hover:text-chrysocolla-green-700': !disabled,
+                      'transform scale-[1.02]': hover && !disabled,
+                      'px-sm py-xs text-small min-h-[44px] min-w-[44px] space-x-2': size === 'sm',
+                      'px-md py-sm text-base min-h-[44px] space-x-2': size === 'md',
+                      'px-lg py-md text-h4-mobile md:text-h4-tablet lg:text-h4-desktop min-h-[52px] space-x-3': size === 'lg',
+                      'px-xl py-lg text-h3-mobile md:text-h3-tablet lg:text-h3-desktop min-h-[60px] space-x-4': size === 'xl',
+                      'w-full': size === 'full'
+                    }">
+                    <span x-text="label"></span>
+                    <svg x-show="hover" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform translate-x-1" x-transition:enter-end="opacity-100 transform translate-x-0" xmlns="http://www.w3.org/2000/svg" :class="{ 'h-4 w-4': size === 'sm', 'h-5 w-5': size === 'md', 'h-6 w-6': size === 'lg', 'h-7 w-7': size === 'xl', 'h-6 w-6': size === 'full' }" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                  <div x-show="hover" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class="absolute bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2 bg-selenite-white-100 text-grey-700 text-caption px-sm py-xs rounded-md shadow-soft mb-2 whitespace-nowrap z-50">
+                    <span x-text="tooltip"></span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1182,121 +930,152 @@
             </div>
           </div>
 
-          <!-- Size Variations Display -->
-          <div class="space-y-8">
-            <div
-              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg mb-xl"
-            >
-              <!-- Small Button -->
-              <div class="flex flex-col items-center space-y-sm">
-                <span class="font-montserrat text-caption text-grey-700"
-                  >Small (sm)</span
-                >
-                <button
-                  class="px-sm py-xs text-small text-azurite-blue-600 font-medium rounded-lg hover:bg-azurite-blue-50 focus:outline-none focus:ring-2 focus:ring-azurite-blue-500 focus:ring-offset-2 transition-all duration-300"
-                >
-                  Learn More
+          <!-- Tertiary Button Demo Section -->
+          <div class="py-xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg mb-xl justify-items-center">
+            <div x-data="{ ...tertiaryButton({ size: 'sm', label: 'Learn more', tooltip: 'Learn more about this option' }), hover: false }">
+              <div :class="{ 'inline-block relative': size !== 'full', 'w-full': size === 'full' }">
+                <button @mouseenter="hover = true" @mouseleave="hover = false" @focus="hover = true" @blur="hover = false" @click="action()" 
+                  :class="{ 
+                    'bg-transparent border-2 border-grey-600 text-grey-600 rounded-md shadow-soft transition-all duration-300 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-grey-200 disabled:border-grey-300 disabled:text-grey-500': true,
+                    'hover:border-grey-700 hover:text-grey-700': !disabled,
+                    'transform scale-[1.02]': hover && !disabled,
+                    'px-sm py-xs text-small min-h-[44px] min-w-[44px] space-x-2': size === 'sm',
+                    'px-md py-sm text-base min-h-[44px] space-x-2': size === 'md',
+                    'px-lg py-md text-h4-mobile md:text-h4-tablet lg:text-h4-desktop min-h-[52px] space-x-3': size === 'lg',
+                    'px-xl py-lg text-h3-mobile md:text-h3-tablet lg:text-h3-desktop min-h-[60px] space-x-4': size === 'xl',
+                    'w-full': size === 'full'
+                  }">
+                  <span x-text="label"></span>
+                  <svg x-show="hover" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform translate-x-1" x-transition:enter-end="opacity-100 transform translate-x-0" xmlns="http://www.w3.org/2000/svg" :class="{ 'h-4 w-4': size === 'sm', 'h-5 w-5': size === 'md', 'h-6 w-6': size === 'lg', 'h-7 w-7': size === 'xl', 'h-6 w-6': size === 'full' }" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
                 </button>
-              </div>
-              <!-- Medium Button -->
-              <div class="flex flex-col items-center space-y-sm">
-                <span class="font-montserrat text-caption text-grey-700"
-                  >Medium (md) - Default</span
-                >
-                <button
-                  class="px-md py-sm text-base text-azurite-blue-600 font-medium rounded-lg hover:bg-azurite-blue-50 focus:outline-none focus:ring-2 focus:ring-azurite-blue-500 focus:ring-offset-2 transition-all duration-300"
-                >
-                  Learn More
-                </button>
-              </div>
-              <!-- Large Button -->
-              <div class="flex flex-col items-center space-y-sm">
-                <span class="font-montserrat text-caption text-grey-700"
-                  >Large (lg)</span
-                >
-                <button
-                  class="px-lg py-md text-lg text-azurite-blue-600 font-medium rounded-lg hover:bg-azurite-blue-50 focus:outline-none focus:ring-2 focus:ring-azurite-blue-500 focus:ring-offset-2 transition-all duration-300"
-                >
-                  Learn More
-                </button>
-              </div>
-              <!-- Extra Large Button -->
-              <div class="flex flex-col items-center space-y-sm">
-                <span class="font-montserrat text-caption text-grey-700"
-                  >Extra Large (xl)</span
-                >
-                <button
-                  class="px-xl py-lg text-xl text-azurite-blue-600 font-medium rounded-lg hover:bg-azurite-blue-50 focus:outline-none focus:ring-2 focus:ring-azurite-blue-500 focus:ring-offset-2 transition-all duration-300"
-                >
-                  Learn More
-                </button>
+                <div x-show="hover" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class="absolute top-full left-1/2 transform -translate-x-1/2 translate-y-2 bg-selenite-white-100 text-grey-700 text-caption px-sm py-xs rounded-md shadow-soft mt-2 whitespace-nowrap z-50">
+                  <span x-text="tooltip"></span>
+                </div>
               </div>
             </div>
-            <!-- Full Width Button -->
-            <div class="space-y-sm">
-              <span class="font-montserrat text-caption text-grey-700"
-                >Full Width</span
-              >
-              <div class="w-full">
-                <button
-                  class="w-full px-md py-sm text-base text-azurite-blue-600 font-medium rounded-lg hover:bg-azurite-blue-50 focus:outline-none focus:ring-2 focus:ring-azurite-blue-500 focus:ring-offset-2 transition-all duration-300"
-                >
-                  Learn More
+            <div x-data="{ ...tertiaryButton({ size: 'md', label: 'Learn more', tooltip: 'Learn more about this option' }), hover: false }">
+              <div :class="{ 'inline-block relative': size !== 'full', 'w-full': size === 'full' }">
+                <button @mouseenter="hover = true" @mouseleave="hover = false" @focus="hover = true" @blur="hover = false" @click="action()" 
+                  :class="{ 
+                    'bg-transparent border-2 border-grey-600 text-grey-600 rounded-md shadow-soft transition-all duration-300 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-grey-200 disabled:border-grey-300 disabled:text-grey-500': true,
+                    'hover:border-grey-700 hover:text-grey-700': !disabled,
+                    'transform scale-[1.02]': hover && !disabled,
+                    'px-sm py-xs text-small min-h-[44px] min-w-[44px] space-x-2': size === 'sm',
+                    'px-md py-sm text-base min-h-[44px] space-x-2': size === 'md',
+                    'px-lg py-md text-h4-mobile md:text-h4-tablet lg:text-h4-desktop min-h-[52px] space-x-3': size === 'lg',
+                    'px-xl py-lg text-h3-mobile md:text-h3-tablet lg:text-h3-desktop min-h-[60px] space-x-4': size === 'xl',
+                    'w-full': size === 'full'
+                  }">
+                  <span x-text="label"></span>
+                  <svg x-show="hover" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform translate-x-1" x-transition:enter-end="opacity-100 transform translate-x-0" xmlns="http://www.w3.org/2000/svg" :class="{ 'h-4 w-4': size === 'sm', 'h-5 w-5': size === 'md', 'h-6 w-6': size === 'lg', 'h-7 w-7': size === 'xl', 'h-6 w-6': size === 'full' }" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
                 </button>
+                <div x-show="hover" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class="absolute top-full left-1/2 transform -translate-x-1/2 translate-y-2 bg-selenite-white-100 text-grey-700 text-caption px-sm py-xs rounded-md shadow-soft mt-2 whitespace-nowrap z-50">
+                  <span x-text="tooltip"></span>
+                </div>
+              </div>
+            </div>
+            <div x-data="{ ...tertiaryButton({ size: 'lg', label: 'Learn more', tooltip: 'Learn more about this option' }), hover: false }">
+              <div :class="{ 'inline-block relative': size !== 'full', 'w-full': size === 'full' }">
+                <button @mouseenter="hover = true" @mouseleave="hover = false" @focus="hover = true" @blur="hover = false" @click="action()" 
+                  :class="{ 
+                    'bg-transparent border-2 border-grey-600 text-grey-600 rounded-md shadow-soft transition-all duration-300 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-grey-200 disabled:border-grey-300 disabled:text-grey-500': true,
+                    'hover:border-grey-700 hover:text-grey-700': !disabled,
+                    'transform scale-[1.02]': hover && !disabled,
+                    'px-sm py-xs text-small min-h-[44px] min-w-[44px] space-x-2': size === 'sm',
+                    'px-md py-sm text-base min-h-[44px] space-x-2': size === 'md',
+                    'px-lg py-md text-h4-mobile md:text-h4-tablet lg:text-h4-desktop min-h-[52px] space-x-3': size === 'lg',
+                    'px-xl py-lg text-h3-mobile md:text-h3-tablet lg:text-h3-desktop min-h-[60px] space-x-4': size === 'xl',
+                    'w-full': size === 'full'
+                  }">
+                  <span x-text="label"></span>
+                  <svg x-show="hover" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform translate-x-1" x-transition:enter-end="opacity-100 transform translate-x-0" xmlns="http://www.w3.org/2000/svg" :class="{ 'h-4 w-4': size === 'sm', 'h-5 w-5': size === 'md', 'h-6 w-6': size === 'lg', 'h-7 w-7': size === 'xl', 'h-6 w-6': size === 'full' }" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+                </button>
+                <div x-show="hover" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class="absolute top-full left-1/2 transform -translate-x-1/2 translate-y-2 bg-selenite-white-100 text-grey-700 text-caption px-sm py-xs rounded-md shadow-soft mt-2 whitespace-nowrap z-50">
+                  <span x-text="tooltip"></span>
+                </div>
+              </div>
+            </div>
+            <div x-data="{ ...tertiaryButton({ size: 'xl', label: 'Learn more', tooltip: 'Learn more about this option' }), hover: false }">
+              <div :class="{ 'inline-block relative': size !== 'full', 'w-full': size === 'full' }">
+                <button @mouseenter="hover = true" @mouseleave="hover = false" @focus="hover = true" @blur="hover = false" @click="action()" 
+                  :class="{ 
+                    'bg-transparent border-2 border-grey-600 text-grey-600 rounded-md shadow-soft transition-all duration-300 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-grey-200 disabled:border-grey-300 disabled:text-grey-500': true,
+                    'hover:border-grey-700 hover:text-grey-700': !disabled,
+                    'transform scale-[1.02]': hover && !disabled,
+                    'px-sm py-xs text-small min-h-[44px] min-w-[44px] space-x-2': size === 'sm',
+                    'px-md py-sm text-base min-h-[44px] space-x-2': size === 'md',
+                    'px-lg py-md text-h4-mobile md:text-h4-tablet lg:text-h4-desktop min-h-[52px] space-x-3': size === 'lg',
+                    'px-xl py-lg text-h3-mobile md:text-h3-tablet lg:text-h3-desktop min-h-[60px] space-x-4': size === 'xl',
+                    'w-full': size === 'full'
+                  }">
+                  <span x-text="label"></span>
+                  <svg x-show="hover" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform translate-x-1" x-transition:enter-end="opacity-100 transform translate-x-0" xmlns="http://www.w3.org/2000/svg" :class="{ 'h-4 w-4': size === 'sm', 'h-5 w-5': size === 'md', 'h-6 w-6': size === 'lg', 'h-7 w-7': size === 'xl', 'h-6 w-6': size === 'full' }" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+                </button>
+                <div x-show="hover" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class="absolute top-full left-1/2 transform -translate-x-1/2 translate-y-2 bg-selenite-white-100 text-grey-700 text-caption px-sm py-xs rounded-md shadow-soft mt-2 whitespace-nowrap z-50">
+                  <span x-text="tooltip"></span>
+                </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <!-- States & Variations Display -->
-          <div class="space-y-8">
-            <div
-              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg mb-xl"
-            >
-              <!-- Default State -->
-              <div class="flex flex-col items-center space-y-sm">
-                <span class="font-montserrat text-caption text-grey-700"
-                  >Default</span
-                >
-                <button
-                  class="px-md py-sm text-azurite-blue-600 font-medium hover:bg-azurite-blue-50 rounded-lg transition-all duration-300"
-                >
-                  Learn More
-                </button>
-              </div>
-              <!-- Hover State -->
-              <div class="flex flex-col items-center space-y-sm">
-                <span class="font-montserrat text-caption text-grey-700"
-                  >Hover</span
-                >
-                <button
-                  class="px-md py-sm text-azurite-blue-600 font-medium rounded-lg bg-azurite-blue-50 transition-all duration-300"
-                >
-                  Learn More
-                </button>
-              </div>
-              <!-- Focus State -->
-              <div class="flex flex-col items-center space-y-sm">
-                <span class="font-montserrat text-caption text-grey-700"
-                  >Focus</span
-                >
-                <button
-                  class="px-md py-sm text-azurite-blue-600 font-medium rounded-lg ring-2 ring-azurite-blue-500 ring-offset-2 focus:outline-none transition-all duration-300"
-                >
-                  Learn More
-                </button>
-              </div>
-              <!-- Disabled State -->
-              <div class="flex flex-col items-center space-y-sm">
-                <span class="font-montserrat text-caption text-grey-700"
-                  >Disabled</span
-                >
-                <button
-                  disabled
-                  class="px-md py-sm text-grey-500 font-medium rounded-lg bg-grey-100 cursor-not-allowed opacity-60 transition-all duration-300"
-                >
-                  Learn More
-                </button>
-              </div>
+        <!-- States & Variations Display -->
+        <div class="space-y-8">
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg mb-xl"
+          >
+            <!-- Default State -->
+            <div class="flex flex-col items-center space-y-sm">
+              <span class="font-montserrat text-caption text-grey-700"
+                >Default</span
+              >
+              <button
+                class="px-md py-sm text-azurite-blue-600 font-medium hover:bg-azurite-blue-50 rounded-lg transition-all duration-300"
+              >
+                Learn More
+              </button>
+            </div>
+            <!-- Hover State -->
+            <div class="flex flex-col items-center space-y-sm">
+              <span class="font-montserrat text-caption text-grey-700"
+                >Hover</span
+              >
+              <button
+                class="px-md py-sm text-azurite-blue-600 font-medium rounded-lg bg-azurite-blue-50 transition-all duration-300"
+              >
+                Learn More
+              </button>
+            </div>
+            <!-- Focus State -->
+            <div class="flex flex-col items-center space-y-sm">
+              <span class="font-montserrat text-caption text-grey-700"
+                >Focus</span
+              >
+              <button
+                class="px-md py-sm text-azurite-blue-600 font-medium rounded-lg ring-2 ring-azurite-blue-500 ring-offset-2 focus:outline-none transition-all duration-300"
+              >
+                Learn More
+              </button>
+            </div>
+            <!-- Disabled State -->
+            <div class="flex flex-col items-center space-y-sm">
+              <span class="font-montserrat text-caption text-grey-700"
+                >Disabled</span
+              >
+              <button
+                disabled
+                class="px-md py-sm text-grey-500 font-medium rounded-lg bg-grey-100 cursor-not-allowed opacity-60 transition-all duration-300"
+              >
+                Learn More
+              </button>
             </div>
           </div>
         </div>

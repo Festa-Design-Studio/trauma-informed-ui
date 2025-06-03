@@ -28,9 +28,9 @@
   </ol>
 </nav>
 <div
-  x-data="primaryButton({ size: size || 'md', label: label || (size === 'sm' ? 'Continue' : 'Continue Learning'), action: action || (() => {}) })"
+  x-data="primaryButton({ size: size || 'md', label: label || (size === 'sm' ? 'Continue' : 'Continue Learning'), action: action || (() => {}), tooltip: tooltip || 'Click to proceed' })"
   :class="{
-    'inline-block': size !== 'full',
+    'inline-block relative': size !== 'full',
     'w-full': size === 'full'
   }"
 >
@@ -76,4 +76,14 @@
       />
     </svg>
   </button>
+  <!-- Gentle tooltip -->
+  <div
+    x-show="hover"
+    x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="opacity-0 transform -translate-y-2"
+    x-transition:enter-end="opacity-100 transform translate-y-0"
+    class="absolute bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2 bg-selenite-white-50 text-grey-800 text-caption px-sm py-xs rounded-md shadow-soft mb-2 whitespace-nowrap z-50"
+  >
+    <span x-text="tooltip"></span>
+  </div>
 </div>

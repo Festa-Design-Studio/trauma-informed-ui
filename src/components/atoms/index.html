@@ -10,7 +10,7 @@
       rel="stylesheet"
     />
     <!-- Import main.js which includes CSS and Alpine.js setup -->
-    <script type="module" crossorigin src="/trauma-informed-ui/assets/main-RQRoSPNR.js"></script>
+    <script type="module" crossorigin src="/trauma-informed-ui/assets/main-CwqkcaSK.js"></script>
     <link rel="stylesheet" crossorigin href="/trauma-informed-ui/assets/main-BbN2WATJ.css">
   </head>
 
@@ -1511,6 +1511,32 @@
           </div>
         </div>
       </section>
+
+      <!-- Tertiary Button Demo Section (replace all direct button markup with this pattern for each size) -->
+      <div
+        class="space-y-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg mb-xl"
+      >
+        <div
+          x-data="tertiaryButton({ size: 'sm', label: 'Skip', tooltip: 'Skip this step' })"
+        >
+          <template x-include="buttons/tertiary-button.html"></template>
+        </div>
+        <div
+          x-data="tertiaryButton({ size: 'md', label: 'Skip', tooltip: 'Skip this step' })"
+        >
+          <template x-include="buttons/tertiary-button.html"></template>
+        </div>
+        <div
+          x-data="tertiaryButton({ size: 'lg', label: 'Skip', tooltip: 'Skip this step' })"
+        >
+          <template x-include="buttons/tertiary-button.html"></template>
+        </div>
+        <div
+          x-data="tertiaryButton({ size: 'xl', label: 'Skip', tooltip: 'Skip this step' })"
+        >
+          <template x-include="buttons/tertiary-button.html"></template>
+        </div>
+      </div>
     </main>
 
     <!-- Footer Structure: Systematic, reusable for all component pages -->
