@@ -1,0 +1,82 @@
+<!-- Component: Loading States
+     Type: Atom
+     Status: Complete
+     Dependencies: None
+     Trauma-Informed Considerations:
+     - Gentle animations
+     - Clear loading indication
+     - Consistent styling
+     - Accessible labels
+     - Progress feedback
+-->
+<div class="space-y-8">
+  <!-- Spinner -->
+  <div class="space-y-2">
+    <div class="text-grey-600 text-caption">Spinner</div>
+    <div class="relative inline-flex">
+      <div
+        class="w-8 h-8 border-3 border-grey-200 rounded-full"
+        :class="{ 'animate-spin': loading }"
+      >
+        <div
+          class="absolute top-0 left-0 w-8 h-8 border-3 border-chrysocolla-green rounded-full border-t-transparent"
+        ></div>
+      </div>
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
+  <!-- Pulse -->
+  <div class="space-y-2">
+    <div class="text-grey-600 text-caption">Pulse</div>
+    <div class="flex space-x-2">
+      <div
+        class="w-2 h-2 bg-chrysocolla-green rounded-full"
+        :class="{ 'animate-pulse': loading }"
+      ></div>
+      <div
+        class="w-2 h-2 bg-chrysocolla-green rounded-full animation-delay-200"
+        :class="{ 'animate-pulse': loading }"
+      ></div>
+      <div
+        class="w-2 h-2 bg-chrysocolla-green rounded-full animation-delay-400"
+        :class="{ 'animate-pulse': loading }"
+      ></div>
+    </div>
+  </div>
+
+  <!-- Progress -->
+  <div class="space-y-2">
+    <div class="text-grey-600 text-caption">Progress</div>
+    <div class="relative h-1 bg-grey-200 rounded-full overflow-hidden">
+      <div
+        class="absolute left-0 top-0 h-full bg-chrysocolla-green rounded-full transition-all duration-500 ease-out"
+        :class="{ 'animate-progress': loading }"
+        style="width: 0%"
+      ></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+  @keyframes progress {
+    0% {
+      width: 0%;
+    }
+    50% {
+      width: 100%;
+    }
+    100% {
+      width: 0%;
+    }
+  }
+  .animate-progress {
+    animation: progress 2s ease-in-out infinite;
+  }
+</style>

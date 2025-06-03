@@ -1,0 +1,79 @@
+<!-- Component: Primary Button
+     Type: Atom
+     Status: Complete
+     Dependencies: None
+     Trauma-Informed Considerations:
+     - Clear visual hierarchy
+     - Gentle transitions for predictability
+     - Sufficient contrast for readability
+     - Clear hover and focus states
+     - Optional icon support for better understanding
+     - Size variations maintain minimum 44px touch target
+     Usage:
+     <div x-data="primaryButton({ size: 'md', label: 'Continue Learning', action: yourActionFunction })">
+       <template x-include="buttons/primary-button.html"></template>
+     </div>
+-->
+<nav aria-label="Breadcrumb" class="mb-4">
+  <ol class="flex items-center space-x-2 text-sm font-montserrat text-grey-700">
+    <li>
+      <a
+        href="../../atomic-structure.html"
+        class="hover:underline text-azurite-blue-600"
+        >Atomic Structure</a
+      >
+    </li>
+    <li aria-hidden="true">/</li>
+    <li class="text-grey-500" aria-current="page">Primary Button</li>
+  </ol>
+</nav>
+<div
+  x-data="primaryButton({ size: size || 'md', label: label || (size === 'sm' ? 'Continue' : 'Continue Learning'), action: action || (() => {}) })"
+  :class="{
+    'inline-block': size !== 'full',
+    'w-full': size === 'full'
+  }"
+>
+  <button
+    @mouseenter="hover = true"
+    @mouseleave="hover = false"
+    @focus="hover = true"
+    @blur="hover = false"
+    @click="action()"
+    :class="{
+      // Base classes
+      'bg-chrysocolla-green hover:bg-chrysocolla-green-600 text-selenite-white-50 rounded-md shadow-soft transition-all duration flex items-center justify-center': true,
+      'transform scale-[1.02]': hover,
+      // Size variations
+      'px-sm py-xs text-small min-h-[44px] min-w-[44px] space-x-2': size === 'sm',
+      'px-md py-sm text-base min-h-[44px] space-x-2': size === 'md',
+      'px-lg py-md text-h4-mobile md:text-h4-tablet lg:text-h4-desktop min-h-[52px] space-x-3': size === 'lg',
+      'px-xl py-lg text-h3-mobile md:text-h3-tablet lg:text-h3-desktop min-h-[60px] space-x-4': size === 'xl',
+      'w-full': size === 'full'
+    }"
+  >
+    <span x-text="label"></span>
+    <svg
+      x-show="hover"
+      x-transition:enter="transition ease-out duration"
+      x-transition:enter-start="opacity-0 transform translate-x-1"
+      x-transition:enter-end="opacity-100 transform translate-x-0"
+      xmlns="http://www.w3.org/2000/svg"
+      :class="{
+        'h-4 w-4': size === 'sm',
+        'h-5 w-5': size === 'md',
+        'h-6 w-6': size === 'lg',
+        'h-7 w-7': size === 'xl',
+        'h-6 w-6': size === 'full'
+      }"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+        clip-rule="evenodd"
+      />
+    </svg>
+  </button>
+</div>
