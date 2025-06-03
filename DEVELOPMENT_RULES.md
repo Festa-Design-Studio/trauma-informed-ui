@@ -201,7 +201,14 @@ Every component MUST implement:
 </div>
 ```
 
-### Rule 9: Quality Checklist
+### Rule 9: Navigation & Build Troubleshooting
+
+- All navigation links must point to `.html` files that exist in the build output.
+- Every new HTML file (including those in subdirectories) **must** be added to `vite.config.js` under `rollupOptions.input`.
+- After adding new pages, always run `npm run build` and check the `dist` folder to ensure the file is present.
+- If a navigation link results in a 404, check that the file is listed in the Vite config and rebuilt.
+
+### Rule 10: Quality Checklist
 
 Before completion, verify:
 
@@ -249,3 +256,8 @@ Before completion, verify:
 5. Future Enhancements
 
 Remember: Every development decision must prioritize user safety, predictability, and empowerment while maintaining high design standards.
+
+## Page Structure Consistency
+
+- All new component pages must use the header/footer structure from `templates/page-structure.html`.
+- See `templates/README.md` for usage instructions and rationale.

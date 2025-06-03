@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atomic Structure - Trauma-Informed UI</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body class="bg-selenite-white-50 min-h-screen p-8">
+    <!-- Emergency Exit - Always Accessible -->
+    <div class="fixed bottom-4 right-4 z-50">
+      <div x-data="emergencyExit">
+        <div x-data="{ hover: false }" class="relative">
+          <button
+            @mouseenter="hover = true"
+            @mouseleave="hover = false"
+            @focus="hover = true"
+            @blur="hover = false"
+            @click="exit()"
+            class="bg-rhodochrosite-rose hover:bg-rhodochrosite-rose-600 text-selenite-white-50 transition-all duration-300 flex items-center space-x-2 rounded-md shadow-soft"
+            :class="{
+              'px-sm py-xs text-small': window.innerWidth < 768,
+              'px-md py-sm': window.innerWidth >= 768
+            }"
+            aria-label="Emergency exit - Click to leave immediately"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              :class="{
+                'h-4 w-4': window.innerWidth < 768,
+                'h-5 w-5': window.innerWidth >= 768
+              }"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <span
+              :class="{
+                'hidden sm:inline': window.innerWidth < 768,
+                'inline': window.innerWidth >= 768
+              }"
+              >Emergency Exit</span
+            >
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header Structure -->
+    <header class="max-w-4xl mx-auto mb-8">
+      <div class="flex items-center justify-between mb-8">
+        <a
+          href="/trauma-informed-ui/index.html"
+          class="flex items-center space-x-2"
+        >
+          <img
+            src="/src/assets/dgl-logo.svg"
+            alt="Dr. G's Lab Logo"
+            class="h-8 md:h-10"
+          />
+        </a>
+        <nav>
+          <a
+            href="../index.html"
+            class="text-azurite-blue-600 hover:text-azurite-blue-700 transition-all duration-300"
+          >
+            ← Back to Main
+          </a>
+        </nav>
+      </div>
+      <h1
+        class="font-playfair font-bold text-azurite-blue-900 text-h1-mobile md:text-h1-tablet lg:text-h1-desktop mb-4"
+      >
+        Atomic Structure
+      </h1>
+      <p class="font-montserrat text-grey-800 text-body mb-4">
+        Understanding the building blocks of our trauma-informed design system.
+        Each level builds upon the previous, creating a cohesive and supportive
+        user experience.
+      </p>
+    </header>
+
+    <main class="max-w-4xl mx-auto space-y-16">
+      <!-- Atomic Structure Grid -->
+      <section aria-labelledby="atomic-structure-heading">
+        <h2
+          id="atomic-structure-heading"
+          class="font-playfair font-bold text-azurite-blue-900 text-h2-mobile md:text-h2-tablet lg:text-h2-desktop mb-6"
+        >
+          Trauma-informed interface design structure
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Atoms Card -->
+          <div
+            class="bg-selenite-white-100 rounded-lg border border-grey-200 p-8 hover:shadow-soft transition-all duration-300"
+          >
+            <div class="flex flex-col items-center text-center space-y-6">
+              <!-- Atoms Icon -->
+              <div class="bg-azurite-blue-50 p-6 rounded-full">
+                <svg
+                  class="w-16 h-16 text-azurite-blue-600"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 2L2 7L12 12L22 7L12 2Z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M2 17L12 22L22 17"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M2 12L12 17L22 12"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <h3
+                class="font-playfair font-bold text-azurite-blue-900 text-h3-mobile md:text-h3-tablet lg:text-h3-desktop"
+              >
+                Design foundations
+              </h3>
+              <p class="font-montserrat text-grey-800 text-body">
+                Basic building blocks of our design system. Includes buttons,
+                form elements, typography, and status indicators.
+              </p>
+              <div class="w-full">
+                <div x-data="{ size: 'full' }" class="w-full">
+                  <button
+                    @click="window.location.href='atoms/atomic-components.html'"
+                    class="w-full px-md py-sm text-base text-azurite-blue-600 font-medium rounded-lg hover:bg-azurite-blue-50 focus:outline-none focus:ring-2 focus:ring-azurite-blue-500 focus:ring-offset-2 transition-all duration-300"
+                  >
+                    Explore design foundations
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Molecules Card -->
+          <div
+            class="bg-selenite-white-100 rounded-lg border border-grey-200 p-8 hover:shadow-soft transition-all duration-300"
+          >
+            <div class="flex flex-col items-center text-center space-y-6">
+              <!-- Molecules Icon -->
+              <div class="bg-chrysocolla-green-50 p-6 rounded-full">
+                <svg
+                  class="w-16 h-16 text-chrysocolla-green"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 2L2 7L12 12L22 7L12 2Z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M2 17L12 22L22 17"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M2 12L12 17L22 12"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <h3
+                class="font-playfair font-bold text-azurite-blue-900 text-h3-mobile md:text-h3-tablet lg:text-h3-desktop"
+              >
+                Design building blocks
+              </h3>
+              <p class="font-montserrat text-grey-800 text-body">
+                Combinations of atoms that work together. Includes alerts, form
+                groups, navigation elements, and cards.
+              </p>
+              <div class="w-full">
+                <div x-data="{ size: 'full' }" class="w-full">
+                  <button
+                    @click="window.location.href='../molecules/index.html'"
+                    class="w-full px-md py-sm text-base text-azurite-blue-600 font-medium rounded-lg hover:bg-azurite-blue-50 focus:outline-none focus:ring-2 focus:ring-azurite-blue-500 focus:ring-offset-2 transition-all duration-300"
+                  >
+                    Explore design blocks
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Organisms Card -->
+          <div
+            class="bg-selenite-white-100 rounded-lg border border-grey-200 p-8 hover:shadow-soft transition-all duration-300"
+          >
+            <div class="flex flex-col items-center text-center space-y-6">
+              <!-- Organisms Icon -->
+              <div class="bg-rhodochrosite-rose-50 p-6 rounded-full">
+                <svg
+                  class="w-16 h-16 text-rhodochrosite-rose"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 2L2 7L12 12L22 7L12 2Z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M2 17L12 22L22 17"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M2 12L12 17L22 12"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <h3
+                class="font-playfair font-bold text-azurite-blue-900 text-h3-mobile md:text-h3-tablet lg:text-h3-desktop"
+              >
+                Organisms
+              </h3>
+              <p class="font-montserrat text-grey-800 text-body">
+                Complex UI components that combine molecules. Includes course
+                components, content sections, and navigation systems.
+              </p>
+              <div class="w-full">
+                <div x-data="{ size: 'full' }" class="w-full">
+                  <button
+                    @click="window.location.href='../organisms/index.html'"
+                    class="w-full px-md py-sm text-base text-azurite-blue-600 font-medium rounded-lg hover:bg-azurite-blue-50 focus:outline-none focus:ring-2 focus:ring-azurite-blue-500 focus:ring-offset-2 transition-all duration-300"
+                  >
+                    Explore Organisms
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Templates Card -->
+          <div
+            class="bg-selenite-white-100 rounded-lg border border-grey-200 p-8 hover:shadow-soft transition-all duration-300"
+          >
+            <div class="flex flex-col items-center text-center space-y-6">
+              <!-- Templates Icon -->
+              <div class="bg-grey-100 p-6 rounded-full">
+                <svg
+                  class="w-16 h-16 text-grey-600"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 2L2 7L12 12L22 7L12 2Z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M2 17L12 22L22 17"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M2 12L12 17L22 12"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <h3
+                class="font-playfair font-bold text-azurite-blue-900 text-h3-mobile md:text-h3-tablet lg:text-h3-desktop"
+              >
+                Templates
+              </h3>
+              <p class="font-montserrat text-grey-800 text-body">
+                Page layouts that combine organisms. Includes course templates,
+                authentication pages, and content layouts.
+              </p>
+              <div class="w-full">
+                <div x-data="{ size: 'full' }" class="w-full">
+                  <button
+                    @click="window.location.href='../templates/index.html'"
+                    class="w-full px-md py-sm text-base text-azurite-blue-600 font-medium rounded-lg hover:bg-azurite-blue-50 focus:outline-none focus:ring-2 focus:ring-azurite-blue-500 focus:ring-offset-2 transition-all duration-300"
+                  >
+                    Explore Templates
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer Structure -->
+    <footer class="max-w-4xl mx-auto mt-16 pt-8 border-t border-grey-200">
+      <div
+        class="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0"
+      >
+        <p class="font-montserrat text-grey-600 text-small">
+          Trauma-informed interfaces is a project of Dr. G's Lab in
+          collaboration with Festa Design Studio
+        </p>
+        <img
+          src="/src/assets/dgl-logomark.svg"
+          alt="Dr. G's Lab Logomark"
+          class="h-6"
+        />
+      </div>
+    </footer>
+  </body>
+</html>

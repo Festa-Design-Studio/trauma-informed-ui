@@ -21,7 +21,7 @@
       this.tooltipPosition = spaceBelow >= 40 ? 'bottom' : 'top';
     }
   }"
-  class="relative"
+  class="fixed bottom-4 right-4 z-50"
   @mouseleave="hover = false"
 >
   <button
@@ -46,7 +46,8 @@
       :class="{
         'h-4 w-4': window.innerWidth < 768,
         'h-5 w-5': window.innerWidth >= 768 && window.innerWidth < 1024,
-        'h-6 w-6': window.innerWidth >= 1024
+        'h-6 w-6': window.innerWidth >= 1024 && window.innerWidth < 1440,
+        'h-7 w-7': window.innerWidth >= 1440
       }"
       viewBox="0 0 20 20"
       fill="currentColor"

@@ -3,16 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trauma-Informed UI - Atoms</title>
-    <!-- Add Google Fonts -->
+    <title>Button System - Trauma-Informed UI</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <!-- Import main.js which includes CSS and Alpine.js setup -->
     <script type="module" src="/src/main.js"></script>
   </head>
-
   <body class="bg-selenite-white-50 min-h-screen p-8">
     <!-- Emergency Exit - Always Accessible -->
     <div class="fixed bottom-4 right-4 z-50">
@@ -72,12 +69,13 @@
         </div>
       </div>
     </div>
-
-    <!-- Header Structure: Systematic, reusable for all component pages -->
+    <!-- Header Structure -->
     <header class="max-w-4xl mx-auto mb-8">
-      <!-- Logo and Brand Section -->
       <div class="flex items-center justify-between mb-8">
-        <a href="/" class="flex items-center space-x-2">
+        <a
+          href="/trauma-informed-ui/index.html"
+          class="flex items-center space-x-2"
+        >
           <img
             src="/src/assets/dgl-logo.svg"
             alt="Dr. G's Lab Logo"
@@ -86,24 +84,44 @@
         </a>
         <nav>
           <a
-            href="/trauma-informed-ui/"
+            href="../../../index.html"
             class="text-azurite-blue-600 hover:text-azurite-blue-700 transition-all duration-300"
+            >← Back to Main</a
           >
-            ← Back to Main
-          </a>
         </nav>
       </div>
-      <!-- Page Title Section -->
       <h1
         class="font-playfair font-bold text-azurite-blue-900 text-h1-mobile md:text-h1-tablet lg:text-h1-desktop mb-4"
       >
-        Trauma-Informed UI Atoms
+        Button System
       </h1>
       <p class="font-montserrat text-grey-800 text-body mb-4">
-        Basic building blocks of our trauma-informed design system. Each
-        component prioritizes user safety, predictability, and empowerment.
+        Explore the trauma-informed button system, including Emergency Exit,
+        Primary, Secondary, and Tertiary buttons. Each button is designed for
+        accessibility, predictability, and user safety, with clear states and
+        responsive sizing.
       </p>
     </header>
+
+    <!-- Breadcrumb Navigation -->
+    <nav
+      aria-label="Breadcrumb"
+      class="mb-2xl inline-block bg-selenite-white-100 rounded-md px-md py-sm shadow-soft"
+    >
+      <ol
+        class="flex items-center space-x-2 text-sm font-montserrat text-grey-700"
+      >
+        <li>
+          <a
+            href="../atomic-components.html"
+            class="hover:underline text-azurite-blue-600"
+            >Design foundations</a
+          >
+        </li>
+        <li aria-hidden="true">/</li>
+        <li class="text-grey-500" aria-current="page">Button System</li>
+      </ol>
+    </nav>
 
     <main class="max-w-4xl mx-auto space-y-16">
       <!-- Emergency Exit Button -->
@@ -1282,237 +1300,8 @@
           </div>
         </div>
       </section>
-
-      <!-- Form Elements Section -->
-      <section aria-labelledby="form-elements-heading">
-        <h2
-          id="form-elements-heading"
-          class="font-playfair font-bold text-azurite-blue-900 text-h2-mobile md:text-h2-tablet lg:text-h2-desktop mb-6"
-        >
-          Form Elements
-        </h2>
-        <div
-          class="space-y-8 p-8 bg-selenite-white-100 rounded-lg border border-grey-200"
-        >
-          <div class="space-y-4">
-            <h3 class="font-montserrat font-medium text-grey-800">
-              Text Input
-            </h3>
-            <div x-data="textInput">
-              <!-- Text Input Component -->
-              <div class="space-y-2">
-                <label
-                  :for="$id('input')"
-                  class="block font-montserrat text-grey-800 mb-1"
-                >
-                  <span x-text="label">Text Input</span>
-                  <span x-show="required" class="text-rhodochrosite-rose ml-1"
-                    >*</span
-                  >
-                </label>
-                <div class="relative">
-                  <input
-                    :id="$id('input')"
-                    type="text"
-                    x-model="value"
-                    :placeholder="placeholder"
-                    class="w-full px-md py-sm rounded-md border-2 border-grey-300 font-montserrat text-grey-800 placeholder-grey-500 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-azurite-blue-200 focus:border-chrysocolla-green"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="space-y-4">
-            <h3 class="font-montserrat font-medium text-grey-800">Checkbox</h3>
-            <div x-data="checkbox">
-              <!-- Checkbox Component -->
-              <label
-                class="inline-flex items-center space-x-3 cursor-pointer group"
-              >
-                <div class="relative flex items-center justify-center">
-                  <input
-                    type="checkbox"
-                    x-model="checked"
-                    class="peer sr-only"
-                  />
-                  <div
-                    class="w-6 h-6 rounded border-2 transition-all duration-300 border-grey-300 group-hover:border-chrysocolla-green peer-checked:border-chrysocolla-green peer-focus:ring-2 peer-focus:ring-azurite-blue-200"
-                  >
-                    <svg
-                      x-show="checked"
-                      class="w-4 h-4 text-selenite-white-50 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                </div>
-                <span class="font-montserrat text-grey-800" x-text="label"
-                  >Checkbox Option</span
-                >
-              </label>
-            </div>
-          </div>
-          <div class="space-y-4">
-            <h3 class="font-montserrat font-medium text-grey-800">
-              Radio Button
-            </h3>
-            <div x-data="radioButton">
-              <!-- Radio Button Component -->
-              <div class="space-y-4">
-                <template x-for="option in options" :key="option.value">
-                  <label
-                    :for="$id('radio-' + option.value)"
-                    class="flex items-start space-x-3 cursor-pointer group"
-                  >
-                    <div class="relative flex items-center justify-center pt-1">
-                      <input
-                        :id="$id('radio-' + option.value)"
-                        type="radio"
-                        :name="$id('radio-group')"
-                        :value="option.value"
-                        x-model="selected"
-                        class="peer sr-only"
-                      />
-                      <div
-                        class="w-6 h-6 rounded-full border-2 transition-all duration-300 border-grey-300 group-hover:border-chrysocolla-green peer-checked:border-chrysocolla-green peer-focus:ring-2 peer-focus:ring-azurite-blue-200"
-                      >
-                        <div
-                          class="w-3 h-3 rounded-full bg-chrysocolla-green absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 peer-checked:opacity-100 transition-opacity duration-300"
-                        ></div>
-                      </div>
-                    </div>
-                    <div class="flex-1">
-                      <span
-                        x-text="option.label"
-                        class="block font-montserrat text-grey-800"
-                      ></span>
-                    </div>
-                  </label>
-                </template>
-              </div>
-            </div>
-          </div>
-          <div class="space-y-4">
-            <h3 class="font-montserrat font-medium text-grey-800">
-              Select Dropdown
-            </h3>
-            <div x-data="selectDropdown">
-              <!-- Select Dropdown Component -->
-              <div class="space-y-2">
-                <label
-                  :for="$id('select')"
-                  class="block font-montserrat text-grey-800 mb-1"
-                >
-                  Select Option
-                </label>
-                <div class="relative">
-                  <select
-                    :id="$id('select')"
-                    x-model="selected"
-                    class="w-full appearance-none px-md py-sm pr-10 rounded-md border-2 border-grey-300 font-montserrat text-grey-800 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-azurite-blue-200 focus:border-chrysocolla-green"
-                  >
-                    <template x-for="option in options" :key="option.value">
-                      <option
-                        :value="option.value"
-                        x-text="option.label"
-                      ></option>
-                    </template>
-                  </select>
-                  <div
-                    class="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none"
-                  >
-                    <svg
-                      class="h-5 w-5 text-grey-600"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Typography Section -->
-      <section aria-labelledby="typography-heading">
-        <h2
-          id="typography-heading"
-          class="font-playfair font-bold text-azurite-blue-900 text-h2-mobile md:text-h2-tablet lg:text-h2-desktop mb-6"
-        >
-          Typography
-        </h2>
-        <div
-          class="space-y-8 p-8 bg-selenite-white-100 rounded-lg border border-grey-200"
-        >
-          <div x-data="typography">
-            <template x-include="typography/headings.html"></template>
-            <template x-include="typography/body-text.html"></template>
-            <template x-include="typography/captions.html"></template>
-          </div>
-        </div>
-      </section>
-
-      <!-- Status Indicators Section -->
-      <section aria-labelledby="status-indicators-heading">
-        <h2
-          id="status-indicators-heading"
-          class="font-playfair font-bold text-azurite-blue-900 text-h2-mobile md:text-h2-tablet lg:text-h2-desktop mb-6"
-        >
-          Status Indicators
-        </h2>
-        <div
-          class="space-y-8 p-8 bg-selenite-white-100 rounded-lg border border-grey-200"
-        >
-          <div class="space-y-4">
-            <h3 class="font-montserrat font-medium text-grey-800">
-              Progress Bar
-            </h3>
-            <div x-data="progressBar">
-              <template
-                x-include="status-indicators/progress-bar.html"
-              ></template>
-            </div>
-          </div>
-          <div class="space-y-4">
-            <h3 class="font-montserrat font-medium text-grey-800">
-              Status Badge
-            </h3>
-            <div x-data="statusBadge">
-              <template
-                x-include="status-indicators/status-badge.html"
-              ></template>
-            </div>
-          </div>
-          <div class="space-y-4">
-            <h3 class="font-montserrat font-medium text-grey-800">
-              Loading States
-            </h3>
-            <div x-data="loadingStates">
-              <template
-                x-include="status-indicators/loading-states.html"
-              ></template>
-            </div>
-          </div>
-        </div>
-      </section>
     </main>
-
-    <!-- Footer Structure: Systematic, reusable for all component pages -->
+    <!-- Footer Structure -->
     <footer class="max-w-4xl mx-auto mt-16 pt-8 border-t border-grey-200">
       <div
         class="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0"

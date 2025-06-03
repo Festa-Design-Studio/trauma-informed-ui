@@ -10,11 +10,11 @@
       rel="stylesheet"
     />
     <!-- Import main.js which includes CSS and Alpine.js setup -->
-    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="src/main.js"></script>
   </head>
   <body class="bg-selenite-white-50 min-h-screen p-8">
     <!-- Emergency Exit - Always Accessible -->
-    <div class="fixed top-4 right-4 z-50">
+    <div class="fixed bottom-4 right-4 z-50">
       <div x-data="emergencyExit">
         <div x-data="{ hover: false }" class="relative">
           <button
@@ -23,12 +23,24 @@
             @focus="hover = true"
             @blur="hover = false"
             @click="exit()"
-            class="bg-rhodochrosite-rose hover:bg-rhodochrosite-rose-600 text-white px-md py-sm rounded-md shadow-soft transition-all duration-DEFAULT flex items-center space-x-2"
+            class="bg-rhodochrosite-rose hover:bg-rhodochrosite-rose-600 text-white transition-all duration-300 flex items-center space-x-2 rounded-md shadow-soft"
+            :class="{
+              // Mobile - Small (sm)
+              'px-sm py-xs text-small': window.innerWidth < 768,
+              // Tablet - Medium (md)
+              'px-md py-sm': window.innerWidth >= 768 && window.innerWidth < 1024,
+              // Desktop and larger - Large (lg)
+              'px-lg py-md text-lg': window.innerWidth >= 1024
+            }"
             aria-label="Emergency exit - Click to leave immediately"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
+              :class="{
+                'h-4 w-4': window.innerWidth < 768,
+                'h-5 w-5': window.innerWidth >= 768 && window.innerWidth < 1024,
+                'h-6 w-6': window.innerWidth >= 1024
+              }"
               viewBox="0 0 20 20"
               fill="currentColor"
             >
@@ -38,7 +50,13 @@
                 clip-rule="evenodd"
               />
             </svg>
-            <span>Emergency Exit</span>
+            <span
+              :class="{
+                'hidden sm:inline': window.innerWidth < 768,
+                'inline': window.innerWidth >= 768
+              }"
+              >Emergency Exit</span
+            >
           </button>
           <!-- Gentle tooltip -->
           <div
@@ -54,7 +72,16 @@
       </div>
     </div>
 
+    <!-- Header Structure: Systematic, reusable for all pages -->
     <header class="max-w-4xl mx-auto mb-8">
+      <!-- Centered Logomark -->
+      <div class="flex flex-col items-center justify-center mb-8">
+        <img
+          src="src/assets/dgl-logomark.svg"
+          alt="Dr. G's Lab Logomark"
+          class="h-20 w-auto md:h-28"
+        />
+      </div>
       <h1
         class="font-playfair font-bold text-azurite-blue-900 text-h1-mobile md:text-h1-tablet lg:text-h1-desktop text-center mb-4"
       >
@@ -76,22 +103,30 @@
             safety and comfort through gentle transitions, clear navigation, and
             supportive messaging.
           </p>
-          <div x-data="{ hover: false }" class="inline-block">
-            <a
-              href="src/components/atoms/index.html"
+          <div
+            x-data="primaryButton({ size: 'lg', label: 'Explore components', action: () => window.location.href = './src/components/atomic-structure.html' })"
+            class="inline-block"
+          >
+            <button
               @mouseenter="hover = true"
               @mouseleave="hover = false"
               @focus="hover = true"
               @blur="hover = false"
-              class="inline-flex items-center space-x-2 bg-chrysocolla-green hover:bg-chrysocolla-green-600 text-white px-lg py-md rounded-md shadow-soft transition-all duration-DEFAULT group"
-              :class="{ 'transform scale-[1.02]': hover }"
+              @click="action()"
+              :class="{
+                'bg-chrysocolla-green hover:bg-chrysocolla-green-600 text-selenite-white-50 rounded-md shadow-soft transition-all duration flex items-center justify-center': true,
+                'transform scale-[1.02]': hover,
+                'px-lg py-md text-h4-mobile md:text-h4-tablet lg:text-h4-desktop min-h-[52px] space-x-3': true
+              }"
             >
-              <span class="font-montserrat font-medium"
-                >Explore components</span
-              >
+              <span x-text="label"></span>
               <svg
+                x-show="hover"
+                x-transition:enter="transition ease-out duration"
+                x-transition:enter-start="opacity-0 transform translate-x-1"
+                x-transition:enter-end="opacity-100 transform translate-x-0"
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5 transform transition-transform duration-DEFAULT group-hover:translate-x-1"
+                class="h-6 w-6"
                 viewBox="0 0 20 20"
                 fill="currentColor"
               >
@@ -101,26 +136,37 @@
                   clip-rule="evenodd"
                 />
               </svg>
-            </a>
-            <!-- Gentle tooltip -->
-            <div
-              x-show="hover"
-              x-transition:enter="transition ease-out duration-300"
-              x-transition:enter-start="opacity-0 transform -translate-y-2"
-              x-transition:enter-end="opacity-100 transform translate-y-0"
-              class="absolute mt-2 bg-white text-grey-800 text-caption px-sm py-xs rounded-md shadow-soft mx-md"
-            >
-              View our component library
-            </div>
+            </button>
+          </div>
+          <!-- Gentle tooltip -->
+          <div
+            x-show="hover"
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 transform -translate-y-2"
+            x-transition:enter-end="opacity-100 transform translate-y-0"
+            class="absolute mt-2 bg-white text-grey-800 text-caption px-sm py-xs rounded-md shadow-soft mx-md"
+          >
+            View our component library
           </div>
         </div>
       </div>
     </main>
 
+    <!-- Footer Structure: Systematic, reusable for all pages -->
     <footer class="max-w-4xl mx-auto mt-16 pt-8 border-t border-grey-200">
-      <p class="font-montserrat text-grey-600 text-caption text-center">
-        © 2024 Dr. G's Lab. All rights reserved.
-      </p>
+      <div
+        class="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0"
+      >
+        <p class="font-montserrat text-grey-600 text-small">
+          Trauma-informed interfaces is a project of Dr. G's Lab in
+          collaboration with Festa Design Studio
+        </p>
+        <img
+          src="src/assets/dgl-logomark.svg"
+          alt="Dr. G's Lab Logomark"
+          class="h-6"
+        />
+      </div>
     </footer>
   </body>
 </html>

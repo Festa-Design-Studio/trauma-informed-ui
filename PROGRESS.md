@@ -41,6 +41,12 @@
 - Developer: Festa Design Studio
 - Date: [Current Date]
 - Location: trauma-informed-ui/src/components/atoms/
+- Notes: Improved hover, focus, and disabled states. Updated documentation and ensured trauma-informed and accessibility compliance.
+- Component: Button System Show Page (Atoms)
+- Developer: Festa Design Studio
+- Date: [Current Date]
+- Location: trauma-informed-ui/src/components/atoms/buttons/button-system.html
+- Notes: Centralized documentation and demo hub for all trauma-informed button types (Emergency Exit, Primary, Secondary, Tertiary).
 
 ## Next Up
 
@@ -78,3 +84,6 @@ All atom button components now support dynamic, trauma-informed, and accessible 
 - [Current Date] Typography components completed
 - [Current Date] Status indicators completed
 - [Current Date] Dynamic, responsive button system and documentation completed
+- [x] Added systematic header/footer template (`templates/page-structure.html`) for all component pages
+- [x] Documented usage in `templates/README.md` and updated project documentation
+- [2024-06-03] Fixed navigation 404s by updating `vite.config.js` to include all HTML files and subdirectories. Documented the process in README.md and DEVELOPMENT_RULES.md. All navigation now works on GitHub Pages.

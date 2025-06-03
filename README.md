@@ -97,7 +97,11 @@ This design system follows key trauma-informed principles:
 
 ### Atoms
 
-- Buttons
+- Buttons ([Button System Show Page](src/components/atoms/buttons/button-system.html))
+  - Emergency Exit Button
+  - Primary Button
+  - Secondary Button
+  - Tertiary Button
 - Form elements
 - Typography
 - Status indicators
@@ -129,3 +133,57 @@ Please read our contributing guidelines before submitting changes.
 ## License
 
 Copyright © 2024 Festa Design Studio. All rights reserved.
+
+## Page Structure Template
+
+A systematic header and footer structure is provided in `templates/page-structure.html` for use in all component pages. This ensures:
+
+- Consistent branding with Dr. G's Lab logo and logomark
+- Collaboration statement in the footer
+- Responsive, accessible layout
+
+**How to use:**
+
+1. Copy the header and footer from `templates/page-structure.html` into your new page.
+2. Replace the placeholder title and description.
+3. Add your component content inside the `<main>` tag.
+4. See `templates/README.md` for more details.
+
+## [2024-06-10] Button Atoms Update
+
+- All button atoms (Primary, Secondary, Tertiary, Emergency Exit) now have:
+  - Improved trauma-informed and accessible states: default, hover, focus, disabled
+  - Consistent size variations: sm, md, lg, xl, full-width
+  - Updated documentation and demo structure for clarity and accessibility
+- Tertiary Button section fully restructured to match Primary/Secondary hierarchy
+
+## Troubleshooting: Navigation & Build Issues
+
+### Problem: 404 Errors or Missing Pages on GitHub Pages
+
+If you encounter navigation links that result in "404 Not Found" on GitHub Pages, it is likely because the HTML file was not included in the Vite build output.
+
+#### Solution:
+
+- **Update `vite.config.js`:**  
+  Add every new HTML file (including those in subdirectories) to the `rollupOptions.input` section.  
+  Example:
+  ```js
+  input: {
+    ...,
+    typography: resolve(__dirname, "src/components/atoms/typography.html"),
+    // Add all new HTML files here
+  }
+  ```
+- **Rebuild and redeploy:**  
+  Run `npm run build` and `npm run deploy`.
+
+#### Why?
+
+Vite only builds files listed in `rollupOptions.input`. If a file is missing, it will not be available in the deployed site, causing navigation to break.
+
+#### What to do next time:
+
+- Whenever you add a new HTML page, always add it to `vite.config.js` and rebuild before deploying.
+
+For more details, see DEVELOPMENT_RULES.md.

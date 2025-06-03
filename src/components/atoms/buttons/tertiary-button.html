@@ -12,10 +12,13 @@
 -->
 <div
   x-data="{ 
-  hover: false,
-  size: 'md' // Available sizes: sm, md (default), lg, xl
-}"
-  class="inline-block"
+    hover: false,
+    size: 'md' // Available sizes: sm, md (default), lg, xl, full
+  }"
+  :class="{
+    'inline-block': size !== 'full',
+    'w-full': size === 'full'
+  }"
 >
   <button
     @mouseenter="hover = true"
@@ -30,7 +33,8 @@
       'px-sm py-xs text-small min-h-[44px] min-w-[44px] space-x-2': size === 'sm',
       'px-md py-sm text-base min-h-[44px] space-x-2': size === 'md',
       'px-lg py-md text-h4-mobile md:text-h4-tablet lg:text-h4-desktop min-h-[52px] space-x-3': size === 'lg',
-      'px-xl py-lg text-h3-mobile md:text-h3-tablet lg:text-h3-desktop min-h-[60px] space-x-4': size === 'xl'
+      'px-xl py-lg text-h3-mobile md:text-h3-tablet lg:text-h3-desktop min-h-[60px] space-x-4': size === 'xl',
+      'w-full': size === 'full'
     }"
   >
     <svg
@@ -39,7 +43,8 @@
         'h-4 w-4': size === 'sm',
         'h-5 w-5': size === 'md',
         'h-6 w-6': size === 'lg',
-        'h-7 w-7': size === 'xl'
+        'h-7 w-7': size === 'xl',
+        'h-6 w-6': size === 'full'
       }"
       viewBox="0 0 20 20"
       fill="currentColor"

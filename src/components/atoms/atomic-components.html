@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Design foundations - Trauma-Informed UI</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body class="bg-selenite-white-50 min-h-screen p-8">
+    <!-- Emergency Exit - Always Accessible -->
+    <div class="fixed bottom-4 right-4 z-50">
+      <div x-data="emergencyExit">
+        <div x-data="{ hover: false }" class="relative">
+          <button
+            @mouseenter="hover = true"
+            @mouseleave="hover = false"
+            @focus="hover = true"
+            @blur="hover = false"
+            @click="exit()"
+            class="bg-rhodochrosite-rose hover:bg-rhodochrosite-rose-600 text-selenite-white-50 transition-all duration-300 flex items-center space-x-2 rounded-md shadow-soft"
+            :class="{
+              'px-sm py-xs text-small': window.innerWidth < 768,
+              'px-md py-sm': window.innerWidth >= 768 && window.innerWidth < 1024,
+              'px-lg py-md text-lg': window.innerWidth >= 1024
+            }"
+            aria-label="Emergency exit - Click to leave immediately"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              :class="{
+                'h-4 w-4': window.innerWidth < 768,
+                'h-5 w-5': window.innerWidth >= 768 && window.innerWidth < 1024,
+                'h-6 w-6': window.innerWidth >= 1024
+              }"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <span
+              :class="{
+                'hidden sm:inline': window.innerWidth < 768,
+                'inline': window.innerWidth >= 768
+              }"
+              >Emergency Exit</span
+            >
+          </button>
+          <!-- Gentle tooltip -->
+          <div
+            x-show="hover"
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 transform -translate-y-2"
+            x-transition:enter-end="opacity-100 transform translate-y-0"
+            class="absolute bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2 bg-white text-grey-800 text-caption px-sm py-xs rounded-md shadow-soft mb-2 whitespace-nowrap"
+          >
+            Click to exit immediately
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header Structure -->
+    <header class="max-w-4xl mx-auto mb-8">
+      <div class="flex items-center justify-between mb-8">
+        <a
+          href="/trauma-informed-ui/index.html"
+          class="flex items-center space-x-2"
+        >
+          <img
+            src="/src/assets/dgl-logo.svg"
+            alt="Dr. G's Lab Logo"
+            class="h-8 md:h-10"
+          />
+        </a>
+        <nav>
+          <a
+            href="/trauma-informed-ui/"
+            class="text-azurite-blue-600 hover:text-azurite-blue-700 transition-all duration-300"
+          >
+            ← Back to Main
+          </a>
+        </nav>
+      </div>
+      <h1
+        class="font-playfair font-bold text-azurite-blue-900 text-h1-mobile md:text-h1-tablet lg:text-h1-desktop mb-4"
+      >
+        Design foundations
+      </h1>
+      <p class="font-montserrat text-grey-800 text-body mb-4">
+        Explore the foundational atomic components of our trauma-informed design
+        system. Each card below links to a detailed demo or documentation for
+        that atomic category.
+      </p>
+    </header>
+
+    <!-- Breadcrumb Navigation -->
+    <nav
+      aria-label="Breadcrumb"
+      class="mb-2xl inline-block bg-selenite-white-100 rounded-md px-md py-sm shadow-soft"
+    >
+      <ol
+        class="flex items-center space-x-2 text-sm font-montserrat text-grey-700"
+      >
+        <li>
+          <a
+            href="../atomic-structure.html"
+            class="hover:underline text-azurite-blue-600"
+            >Atomic Structure</a
+          >
+        </li>
+        <li aria-hidden="true">/</li>
+        <li class="text-grey-500" aria-current="page">Design foundations</li>
+      </ol>
+    </nav>
+
+    <main class="max-w-4xl mx-auto space-y-16">
+      <!-- Section 1: Design Tokens -->
+      <section aria-labelledby="design-tokens-heading">
+        <h2
+          id="design-tokens-heading"
+          class="font-playfair font-bold text-azurite-blue-900 text-h2-mobile md:text-h2-tablet lg:text-h2-desktop mb-2"
+        >
+          Design Tokens
+        </h2>
+        <p class="font-montserrat text-grey-700 text-base mb-8">
+          Reusable values that style components: Typography, Color, and Layout.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Typography Card -->
+          <div
+            class="bg-selenite-white-100 rounded-lg border border-grey-200 p-8 hover:shadow-soft transition-all duration-300"
+          >
+            <div class="flex flex-col items-center text-center space-y-6">
+              <div class="bg-azurite-blue-50 p-6 rounded-full">
+                <svg
+                  class="w-16 h-16 text-azurite-blue-600"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <text
+                    x="4"
+                    y="18"
+                    font-size="14"
+                    fill="currentColor"
+                    font-family="Montserrat, Arial"
+                  >
+                    Aa
+                  </text>
+                </svg>
+              </div>
+              <h3
+                class="font-playfair font-bold text-azurite-blue-900 text-h3-mobile md:text-h3-tablet lg:text-h3-desktop"
+              >
+                Typography
+              </h3>
+              <p class="font-montserrat text-grey-800 text-body">
+                Font families, sizes, weights, and line heights for accessible,
+                trauma-informed text hierarchy.
+              </p>
+              <div class="w-full">
+                <button
+                  onclick="window.location.href='typography.html'"
+                  class="w-full px-md py-sm text-base text-azurite-blue-600 font-medium rounded-lg hover:bg-azurite-blue-50 focus:outline-none focus:ring-2 focus:ring-azurite-blue-500 focus:ring-offset-2 transition-all duration-300"
+                >
+                  Explore Typography
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Color Card -->
+          <div
+            class="bg-selenite-white-100 rounded-lg border border-grey-200 p-8 hover:shadow-soft transition-all duration-300"
+          >
+            <div class="flex flex-col items-center text-center space-y-6">
+              <div class="bg-chrysocolla-green-50 p-6 rounded-full">
+                <svg
+                  class="w-16 h-16 text-chrysocolla-green"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    x="4"
+                    y="4"
+                    width="16"
+                    height="16"
+                    rx="4"
+                    fill="currentColor"
+                  />
+                  <circle cx="12" cy="12" r="6" fill="#fff" />
+                </svg>
+              </div>
+              <h3
+                class="font-playfair font-bold text-azurite-blue-900 text-h3-mobile md:text-h3-tablet lg:text-h3-desktop"
+              >
+                Color
+              </h3>
+              <p class="font-montserrat text-grey-800 text-body">
+                Semantic color palette and tokens for backgrounds, text, and UI
+                states. Ensures clarity, contrast, and emotional safety.
+              </p>
+              <div class="w-full">
+                <button
+                  onclick="window.location.href='color-system.html'"
+                  class="w-full px-md py-sm text-base text-azurite-blue-600 font-medium rounded-lg hover:bg-azurite-blue-50 focus:outline-none focus:ring-2 focus:ring-azurite-blue-500 focus:ring-offset-2 transition-all duration-300"
+                >
+                  View Color System
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Layout Card -->
+          <div
+            class="bg-selenite-white-100 rounded-lg border border-grey-200 p-8 hover:shadow-soft transition-all duration-300"
+          >
+            <div class="flex flex-col items-center text-center space-y-6">
+              <div class="bg-grey-100 p-6 rounded-full">
+                <svg
+                  class="w-16 h-16 text-grey-600"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    x="4"
+                    y="10"
+                    width="16"
+                    height="4"
+                    rx="2"
+                    fill="currentColor"
+                  />
+                  <rect x="4" y="4" width="16" height="2" rx="1" fill="#fff" />
+                  <rect x="4" y="18" width="16" height="2" rx="1" fill="#fff" />
+                </svg>
+              </div>
+              <h3
+                class="font-playfair font-bold text-azurite-blue-900 text-h3-mobile md:text-h3-tablet lg:text-h3-desktop"
+              >
+                Layout
+              </h3>
+              <p class="font-montserrat text-grey-800 text-body">
+                Spacing, grid, and responsive layout tokens for consistent,
+                trauma-informed structure and rhythm.
+              </p>
+              <div class="w-full">
+                <button
+                  onclick="window.location.href='layout.html'"
+                  class="w-full px-md py-sm text-base text-azurite-blue-600 font-medium rounded-lg hover:bg-azurite-blue-50 focus:outline-none focus:ring-2 focus:ring-azurite-blue-500 focus:ring-offset-2 transition-all duration-300"
+                >
+                  View Layout & Spacing
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Atomic Design (Component Hierarchy) -->
+      <section aria-labelledby="atomic-design-heading">
+        <h2
+          id="atomic-design-heading"
+          class="font-playfair font-bold text-azurite-blue-900 text-h2-mobile md:text-h2-tablet lg:text-h2-desktop mb-2 mt-16"
+        >
+          Atomic Design (Component Hierarchy)
+        </h2>
+        <p class="font-montserrat text-grey-700 text-base mb-8">
+          Smallest UI elements built using design tokens. These are the
+          foundational building blocks of the system.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Buttons Card -->
+          <div
+            class="bg-selenite-white-100 rounded-lg border border-grey-200 p-8 hover:shadow-soft transition-all duration-300"
+          >
+            <div class="flex flex-col items-center text-center space-y-6">
+              <div class="bg-chrysocolla-green-50 p-6 rounded-full">
+                <svg
+                  class="w-16 h-16 text-chrysocolla-green"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    x="4"
+                    y="10"
+                    width="16"
+                    height="4"
+                    rx="2"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+              <h3
+                class="font-playfair font-bold text-azurite-blue-900 text-h3-mobile md:text-h3-tablet lg:text-h3-desktop"
+              >
+                Buttons
+              </h3>
+              <p class="font-montserrat text-grey-800 text-body">
+                All trauma-informed button components: Emergency Exit, Primary,
+                Secondary, Tertiary, with accessible states and size variations.
+              </p>
+              <div class="w-full">
+                <button
+                  onclick="window.location.href='buttons/button-system.html'"
+                  class="w-full px-md py-sm text-base text-azurite-blue-600 font-medium rounded-lg hover:bg-azurite-blue-50 focus:outline-none focus:ring-2 focus:ring-azurite-blue-500 focus:ring-offset-2 transition-all duration-300"
+                >
+                  Explore Buttons
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Form Elements Card -->
+          <div
+            class="bg-selenite-white-100 rounded-lg border border-grey-200 p-8 hover:shadow-soft transition-all duration-300"
+          >
+            <div class="flex flex-col items-center text-center space-y-6">
+              <div class="bg-rhodochrosite-rose-50 p-6 rounded-full">
+                <svg
+                  class="w-16 h-16 text-rhodochrosite-rose"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    x="4"
+                    y="4"
+                    width="16"
+                    height="16"
+                    rx="4"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+              <h3
+                class="font-playfair font-bold text-azurite-blue-900 text-h3-mobile md:text-h3-tablet lg:text-h3-desktop"
+              >
+                Form Elements
+              </h3>
+              <p class="font-montserrat text-grey-800 text-body">
+                Accessible text inputs, checkboxes, radio buttons, and selects
+                with gentle feedback and clear states.
+              </p>
+              <div class="w-full">
+                <button
+                  onclick="window.location.href='form-elements/text-input.html'"
+                  class="w-full px-md py-sm text-base text-azurite-blue-600 font-medium rounded-lg hover:bg-azurite-blue-50 focus:outline-none focus:ring-2 focus:ring-azurite-blue-500 focus:ring-offset-2 transition-all duration-300"
+                >
+                  Explore Form Elements
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Status Indicators Card -->
+          <div
+            class="bg-selenite-white-100 rounded-lg border border-grey-200 p-8 hover:shadow-soft transition-all duration-300"
+          >
+            <div class="flex flex-col items-center text-center space-y-6">
+              <div class="bg-grey-100 p-6 rounded-full">
+                <svg
+                  class="w-16 h-16 text-grey-600"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="8"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    fill="none"
+                  />
+                  <path
+                    d="M12 8v4l3 3"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <h3
+                class="font-playfair font-bold text-azurite-blue-900 text-h3-mobile md:text-h3-tablet lg:text-h3-desktop"
+              >
+                Status Indicators
+              </h3>
+              <p class="font-montserrat text-grey-800 text-body">
+                Progress bars, badges, and loading states for clear, gentle
+                feedback.
+              </p>
+              <div class="w-full">
+                <button
+                  onclick="window.location.href='status-indicators/progress-bar.html'"
+                  class="w-full px-md py-sm text-base text-azurite-blue-600 font-medium rounded-lg hover:bg-azurite-blue-50 focus:outline-none focus:ring-2 focus:ring-azurite-blue-500 focus:ring-offset-2 transition-all duration-300"
+                >
+                  Explore Status Indicators
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer Structure -->
+    <footer class="max-w-4xl mx-auto mt-16 pt-8 border-t border-grey-200">
+      <div
+        class="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0"
+      >
+        <p class="font-montserrat text-grey-600 text-small">
+          Trauma-informed interfaces is a project of Dr. G's Lab in
+          collaboration with Festa Design Studio
+        </p>
+        <img
+          src="/src/assets/dgl-logomark.svg"
+          alt="Dr. G's Lab Logomark"
+          class="h-6"
+        />
+      </div>
+    </footer>
+  </body>
+</html>

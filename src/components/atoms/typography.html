@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Typography - Trauma-Informed UI</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles/main.css" />
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body class="bg-selenite-white-50 min-h-screen p-8">
+    <!-- Emergency Exit - Always Accessible -->
+    <div class="fixed bottom-4 right-4 z-50">
+      <div x-data="emergencyExit">
+        <div x-data="{ hover: false }" class="relative">
+          <button
+            @mouseenter="hover = true"
+            @mouseleave="hover = false"
+            @focus="hover = true"
+            @blur="hover = false"
+            @click="exit()"
+            class="bg-rhodochrosite-rose hover:bg-rhodochrosite-rose-600 text-selenite-white-50 transition-all duration-300 flex items-center space-x-2 rounded-md shadow-soft"
+            :class="{
+              'px-sm py-xs text-small': window.innerWidth < 768,
+              'px-md py-sm': window.innerWidth >= 768
+            }"
+            aria-label="Emergency exit - Click to leave immediately"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              :class="{
+                'h-4 w-4': window.innerWidth < 768,
+                'h-5 w-5': window.innerWidth >= 768
+              }"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <span
+              :class="{
+                'hidden sm:inline': window.innerWidth < 768,
+                'inline': window.innerWidth >= 768
+              }"
+              >Emergency Exit</span
+            >
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header Structure -->
+    <header class="max-w-4xl mx-auto mb-8">
+      <div class="flex items-center justify-between mb-8">
+        <a
+          href="/trauma-informed-ui/index.html"
+          class="flex items-center space-x-2"
+        >
+          <img
+            src="/src/assets/dgl-logo.svg"
+            alt="Dr. G's Lab Logo"
+            class="h-8 md:h-10"
+          />
+        </a>
+        <nav>
+          <a
+            href="atomic-components.html"
+            class="text-azurite-blue-600 hover:text-azurite-blue-700 transition-all duration-300"
+          >
+            ← Back to Design Foundations
+          </a>
+        </nav>
+      </div>
+      <h1
+        class="font-playfair font-bold text-azurite-blue-900 text-h1-mobile md:text-h1-tablet lg:text-h1-desktop mb-4"
+      >
+        Typography System
+      </h1>
+      <p class="font-montserrat text-grey-800 text-body mb-4">
+        Our typography system is designed to create clear hierarchies and ensure
+        readability while maintaining emotional safety through consistent,
+        predictable text patterns.
+      </p>
+    </header>
+
+    <!-- Breadcrumb Navigation -->
+    <nav
+      aria-label="Breadcrumb"
+      class="mb-2xl inline-block bg-selenite-white-100 rounded-md px-md py-sm shadow-soft"
+    >
+      <ol
+        class="flex items-center space-x-2 text-sm font-montserrat text-grey-700"
+      >
+        <li>
+          <a
+            href="atomic-components.html"
+            class="hover:underline text-azurite-blue-600"
+            >Design Foundations</a
+          >
+        </li>
+        <li aria-hidden="true">/</li>
+        <li class="text-grey-500" aria-current="page">Typography</li>
+      </ol>
+    </nav>
+
+    <main class="max-w-4xl mx-auto space-y-16">
+      <!-- Font Families Section -->
+      <section aria-labelledby="font-families-heading">
+        <h2
+          id="font-families-heading"
+          class="font-playfair font-bold text-azurite-blue-900 text-h2-mobile md:text-h2-tablet lg:text-h2-desktop mb-6"
+        >
+          Font Families
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Playfair Display Card -->
+          <div class="bg-selenite-white-100 rounded-lg p-8">
+            <h3
+              class="font-playfair font-bold text-h3-mobile md:text-h3-tablet lg:text-h3-desktop mb-4"
+            >
+              Playfair Display
+            </h3>
+            <p class="font-montserrat text-grey-800 text-body mb-6">
+              Used for headings and display text to create a sense of stability
+              and authority.
+            </p>
+            <div class="space-y-4">
+              <div>
+                <span class="font-playfair font-bold text-h1-mobile">Aa</span>
+                <span class="text-grey-600 ml-4">Bold (700)</span>
+              </div>
+              <div>
+                <span class="font-playfair font-normal text-h1-mobile">Aa</span>
+                <span class="text-grey-600 ml-4">Regular (400)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Montserrat Card -->
+          <div class="bg-selenite-white-100 rounded-lg p-8">
+            <h3
+              class="font-playfair font-bold text-h3-mobile md:text-h3-tablet lg:text-h3-desktop mb-4"
+            >
+              Montserrat
+            </h3>
+            <p class="font-montserrat text-grey-800 text-body mb-6">
+              Used for body text and UI elements to ensure readability and
+              accessibility.
+            </p>
+            <div class="space-y-4">
+              <div>
+                <span class="font-montserrat font-bold text-h1-mobile">Aa</span>
+                <span class="text-grey-600 ml-4">Bold (700)</span>
+              </div>
+              <div>
+                <span class="font-montserrat font-medium text-h1-mobile"
+                  >Aa</span
+                >
+                <span class="text-grey-600 ml-4">Medium (500)</span>
+              </div>
+              <div>
+                <span class="font-montserrat font-normal text-h1-mobile"
+                  >Aa</span
+                >
+                <span class="text-grey-600 ml-4">Regular (400)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Type Scale Section -->
+      <section aria-labelledby="type-scale-heading">
+        <h2
+          id="type-scale-heading"
+          class="font-playfair font-bold text-azurite-blue-900 text-h2-mobile md:text-h2-tablet lg:text-h2-desktop mb-6"
+        >
+          Type Scale
+        </h2>
+        <div class="bg-selenite-white-100 rounded-lg p-8 space-y-16">
+          <!-- Desktop Headings -->
+          <div class="space-y-6">
+            <h3
+              class="font-playfair font-bold text-h3-mobile md:text-h3-tablet lg:text-h3-desktop text-azurite-blue-900 mb-4"
+            >
+              Desktop Headings
+            </h3>
+            <div class="space-y-6">
+              <div>
+                <h1
+                  class="font-playfair font-bold text-azurite-blue-900 text-h1-desktop"
+                >
+                  H1 Desktop (48/56)
+                </h1>
+
+                <p class="text-grey-600 text-small mt-2">
+                  48px size / 56px line height / -0.02em letter spacing
+                </p>
+              </div>
+              <div>
+                <h2
+                  class="font-playfair font-bold text-h2-desktop text-azurite-blue-900"
+                >
+                  H2 Desktop (36/44)
+                </h2>
+                <p class="text-grey-600 text-small mt-2">
+                  36px size / 44px line height / -0.02em letter spacing
+                </p>
+              </div>
+              <div>
+                <h3
+                  class="font-playfair font-bold text-h3-desktop text-azurite-blue-900"
+                >
+                  H3 Desktop (24/32)
+                </h3>
+                <p class="text-grey-600 text-small mt-2">
+                  24px size / 32px line height / -0.02em letter spacing
+                </p>
+              </div>
+              <div>
+                <h4
+                  class="font-playfair font-bold text-h4-desktop text-azurite-blue-900"
+                >
+                  H4 Desktop (20/28)
+                </h4>
+                <p class="text-grey-600 text-small mt-2">
+                  20px size / 28px line height / -0.02em letter spacing
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Body Text -->
+          <div class="space-y-6">
+            <h3
+              class="font-playfair font-bold text-h3-mobile md:text-h3-tablet lg:text-h3-desktop text-azurite-blue-900 mb-4"
+            >
+              Body Text
+            </h3>
+            <div class="space-y-6">
+              <div>
+                <p class="font-montserrat text-body text-grey-800">
+                  Body Text (16/24)
+                </p>
+                <p class="text-grey-600 text-small mt-2">
+                  16px size / 24px line height / 0 letter spacing
+                </p>
+              </div>
+              <div>
+                <p class="font-montserrat text-small text-grey-800">
+                  Small Text (14/20)
+                </p>
+                <p class="text-grey-600 text-small mt-2">
+                  14px size / 20px line height / 0 letter spacing
+                </p>
+              </div>
+              <div>
+                <p class="font-montserrat text-caption text-grey-800">
+                  Caption Text (12/16)
+                </p>
+                <p class="text-grey-600 text-small mt-2">
+                  12px size / 16px line height / 0 letter spacing
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Expanded Headline & Body System Section -->
+      <section aria-labelledby="headline-body-system-heading">
+        <h2
+          id="headline-body-system-heading"
+          class="font-playfair font-bold text-azurite-blue-900 text-h2-mobile md:text-h2-tablet lg:text-h2-desktop mb-6"
+        >
+          Headline & Body System Reference
+        </h2>
+        <div class="bg-selenite-white-100 rounded-lg p-8 space-y-16">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h3
+                class="font-playfair font-bold text-h3-mobile md:text-h3-tablet lg:text-h3-desktop mb-4"
+              >
+                Desktop
+              </h3>
+              <!-- Desktop -->
+              <div class="space-y-6">
+                <div>
+                  <span
+                    class="font-playfair font-bold text-h1-desktop text-azurite-blue-900"
+                    >H1 Desktop</span
+                  ><span class="ml-4 text-grey-600">.text-h1-desktop</span>
+                </div>
+                <div>
+                  <span
+                    class="font-playfair font-bold text-h2-desktop text-azurite-blue-900"
+                    >H2 Desktop</span
+                  ><span class="ml-4 text-grey-600">.text-h2-desktop</span>
+                </div>
+                <div>
+                  <span
+                    class="font-playfair font-bold text-h3-desktop text-azurite-blue-900"
+                    >H3 Desktop</span
+                  ><span class="ml-4 text-grey-600">.text-h3-desktop</span>
+                </div>
+                <div>
+                  <span
+                    class="font-playfair font-bold text-h4-desktop text-azurite-blue-900"
+                    >H4 Desktop</span
+                  ><span class="ml-4 text-grey-600">.text-h4-desktop</span>
+                </div>
+                <!-- Body Text -->
+                <div class="space-y-4">
+                  <div>
+                    <span class="font-montserrat text-body text-grey-800"
+                      >Body</span
+                    ><span class="ml-4 text-grey-600">.text-body</span>
+                  </div>
+                  <div>
+                    <span class="font-montserrat text-small text-grey-800"
+                      >Small</span
+                    ><span class="ml-4 text-grey-600">.text-small</span>
+                  </div>
+                  <div>
+                    <span class="font-montserrat text-caption text-grey-800"
+                      >Caption</span
+                    ><span class="ml-4 text-grey-600">.text-caption</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Tablet & Mobile -->
+            <div class="space-y-6">
+              <h3
+                class="font-playfair font-bold text-h3-mobile md:text-h3-tablet lg:text-h3-desktop mb-4"
+              >
+                Tablet & Mobile
+              </h3>
+              <div class="space-y-4">
+                <div>
+                  <span
+                    class="font-playfair font-bold text-h1-tablet text-azurite-blue-900"
+                    >H1 Tablet</span
+                  ><span class="ml-4 text-grey-600">.text-h1-tablet</span>
+                </div>
+                <div>
+                  <span
+                    class="font-playfair font-bold text-h2-tablet text-azurite-blue-900"
+                    >H2 Tablet</span
+                  ><span class="ml-4 text-grey-600">.text-h2-tablet</span>
+                </div>
+                <div>
+                  <span
+                    class="font-playfair font-bold text-h3-tablet text-azurite-blue-900"
+                    >H3 Tablet</span
+                  ><span class="ml-4 text-grey-600">.text-h3-tablet</span>
+                </div>
+                <div>
+                  <span
+                    class="font-playfair font-bold text-h4-tablet text-azurite-blue-900"
+                    >H4 Tablet</span
+                  ><span class="ml-4 text-grey-600">.text-h4-tablet</span>
+                </div>
+                <!-- Mobile -->
+                <div class="space-y-4">
+                  <div>
+                    <span
+                      class="font-playfair font-bold text-h1-mobile text-azurite-blue-900"
+                      >H1 Mobile</span
+                    ><span class="ml-4 text-grey-600">.text-h1-mobile</span>
+                  </div>
+                  <div>
+                    <span
+                      class="font-playfair font-bold text-h2-mobile text-azurite-blue-900"
+                      >H2 Mobile</span
+                    ><span class="ml-4 text-grey-600">.text-h2-mobile</span>
+                  </div>
+                  <div>
+                    <span
+                      class="font-playfair font-bold text-h3-mobile text-azurite-blue-900"
+                      >H3 Mobile</span
+                    ><span class="ml-4 text-grey-600">.text-h3-mobile</span>
+                  </div>
+                  <div>
+                    <span
+                      class="font-playfair font-bold text-h4-mobile text-azurite-blue-900"
+                      >H4 Mobile</span
+                    ><span class="ml-4 text-grey-600">.text-h4-mobile</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-8">
+            <h4
+              class="font-playfair font-bold text-h4-desktop text-azurite-blue-900 mb-2"
+            >
+              Code Example
+            </h4>
+            <pre
+              class="bg-grey-100 rounded p-4 text-grey-800 text-small overflow-x-auto block w-full max-w-none -mx-8 sm:mx-0"
+            ><code class="text-caption">&lt;h1 class="font-playfair <br> font-bold text-h1-desktop <br> text-azurite-blue-900"&gt; <br> H1 Desktop Example&lt;/h1&gt;
+&lt;p class="font-montserrat <br> text-body text-grey-800"&gt; <br> Body text example&lt;/p&gt;</code></pre>
+          </div>
+          <div class="mt-8">
+            <h4
+              class="font-playfair font-bold text-h4-desktop text-azurite-blue-900 mb-2"
+            >
+              Trauma-Informed Notes
+            </h4>
+            <ul class="list-disc pl-6 text-grey-800 text-sm space-y-2">
+              <li>
+                Clear information hierarchy supports user orientation and
+                reduces cognitive load.
+              </li>
+              <li>
+                Consistent headline and body styles create predictability and
+                emotional safety.
+              </li>
+              <li>All text meets minimum color contrast for accessibility.</li>
+              <li>Responsive scaling ensures readability on all devices.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Color System Section -->
+      <section aria-labelledby="color-system-heading">
+        <h2
+          id="color-system-heading"
+          class="font-playfair font-bold text-azurite-blue-900 text-h2-mobile md:text-h2-tablet lg:text-h2-desktop mb-6"
+        >
+          Color System
+        </h2>
+        <div class="bg-selenite-white-100 rounded-lg p-8 space-y-8">
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-lg">
+            <!--Azurite Blue-->
+            <div class="space-y-2">
+              <div
+                class="w-16 h-16 rounded-lg bg-azurite-blue-500 border border-grey-200"
+              ></div>
+              <div class="font-montserrat text-grey-800">azurite-blue-500</div>
+              <div class="text-grey-600 text-small">Primary headers, links</div>
+              <div class="text-grey-600 text-small">.bg-azurite-blue-500</div>
+            </div>
+            <!--Sunstone Orange-->
+            <div class="space-y-2">
+              <div
+                class="w-16 h-16 rounded-lg bg-sunstone-orange-500 border border-grey-200"
+              ></div>
+              <div class="font-montserrat text-grey-800">
+                sunstone-orange-500
+              </div>
+              <div class="text-grey-600 text-small">CTAs, highlights</div>
+              <div class="text-grey-600 text-small">
+                .bg-sunstone-orange-500
+              </div>
+            </div>
+            <!--Chrysocolla Green-->
+            <div class="space-y-2">
+              <div
+                class="w-16 h-16 rounded-lg bg-chrysocolla-green-500 border border-grey-200"
+              ></div>
+              <div class="font-montserrat text-grey-800">
+                chrysocolla-green-500
+              </div>
+              <div class="text-grey-600 text-small">
+                Success, positive states
+              </div>
+              <div class="text-grey-600 text-small">
+                .bg-chrysocolla-green-500
+              </div>
+            </div>
+            <!--Rhodochrosite Rose-->
+            <div class="space-y-2">
+              <div
+                class="w-16 h-16 rounded-lg bg-rhodochrosite-rose-500 border border-grey-200"
+              ></div>
+              <div class="font-montserrat text-grey-800">
+                rhodochrosite-rose-500
+              </div>
+              <div class="text-grey-600 text-small">
+                Subtle emphasis, gentle alerts
+              </div>
+              <div class="text-grey-600 text-small">
+                .bg-rhodochrosite-rose-500
+              </div>
+            </div>
+            <!--Selenite White-->
+            <div class="space-y-2">
+              <div
+                class="w-16 h-16 rounded-lg bg-selenite-white-100 border border-grey-200"
+              ></div>
+              <div class="font-montserrat text-grey-800">
+                selenite-white-100
+              </div>
+              <div class="text-grey-600 text-small">Backgrounds, cards</div>
+              <div class="text-grey-600 text-small">.bg-selenite-white-100</div>
+            </div>
+            <!--Grey 800-->
+            <div class="space-y-2">
+              <div
+                class="w-16 h-16 rounded-lg bg-grey-800 border border-grey-200"
+              ></div>
+              <div class="font-montserrat text-grey-800">grey-800</div>
+              <div class="text-grey-600 text-small">Body text, icons</div>
+              <div class="text-grey-600 text-small">.bg-grey-800</div>
+            </div>
+          </div>
+          <div class="mt-8">
+            <h4
+              class="font-playfair font-bold text-h4-desktop text-azurite-blue-900 mb-2"
+            >
+              Code Example
+            </h4>
+            <pre
+              class="bg-grey-100 rounded p-4 text-grey-800 text-small overflow-x-auto block w-full max-w-none -mx-8 sm:mx-0"
+            ><code class="text-caption">&lt;div class="bg-azurite-blue-500 <br> text-selenite-white-50 p-4 <br> rounded"&gt; <br>  Primary Header Example&lt;/div&gt;</code></pre>
+          </div>
+          <div class="mt-8">
+            <h4
+              class="font-playfair font-bold text-h4-desktop text-azurite-blue-900 mb-2"
+            >
+              Trauma-Informed Notes
+            </h4>
+            <ul class="list-disc pl-6 text-grey-800 text-sm space-y-2">
+              <li>Calm, non-triggering palette supports emotional safety.</li>
+              <li>All colors meet accessibility contrast standards.</li>
+              <li>Color is used to support—not overwhelm—content hierarchy.</li>
+              <li>
+                Gentle color cues reinforce predictability and user control.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trauma-Informed Usage Guidelines Section -->
+      <section aria-labelledby="trauma-guidelines-heading">
+        <h2
+          id="trauma-guidelines-heading"
+          class="font-playfair font-bold text-azurite-blue-900 text-h2-mobile md:text-h2-tablet lg:text-h2-desktop mb-6"
+        >
+          Trauma-Informed Typography & Color Guidelines
+        </h2>
+        <div class="bg-selenite-white-100 rounded-lg p-8">
+          <ul class="list-disc pl-6 text-grey-800 text-sm space-y-2">
+            <li>
+              Always maintain clear headline and body hierarchy for orientation
+              and comfort.
+            </li>
+            <li>
+              Use color to gently reinforce structure, not to create pressure or
+              urgency.
+            </li>
+            <li>
+              Ensure all text and color combinations meet or exceed WCAG AA
+              contrast standards.
+            </li>
+            <li>
+              Favor calm, predictable color and type patterns to reduce
+              cognitive load.
+            </li>
+            <li>
+              Pair Playfair Display (headlines) with Montserrat (body) for
+              clarity and stability.
+            </li>
+            <li>
+              Use trauma-safe spacing and avoid crowding to support
+              psychological safety.
+            </li>
+            <li>
+              Provide content warnings and emergency exit options where
+              appropriate.
+            </li>
+            <li>
+              Test with diverse users, including trauma survivors, for
+              validation.
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer Structure -->
+    <footer class="max-w-4xl mx-auto mt-16 pt-8 border-t border-grey-200">
+      <div
+        class="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0"
+      >
+        <p class="font-montserrat text-grey-600 text-small">
+          Trauma-informed interfaces is a project of Dr. G's Lab in
+          collaboration with Festa Design Studio
+        </p>
+        <img
+          src="/src/assets/dgl-logomark.svg"
+          alt="Dr. G's Lab Logomark"
+          class="h-6"
+        />
+      </div>
+    </footer>
+  </body>
+</html>

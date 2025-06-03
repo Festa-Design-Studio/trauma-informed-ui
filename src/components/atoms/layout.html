@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Layout System - Trauma-Informed UI</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles/main.css" />
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body class="bg-selenite-white-50 min-h-screen p-8">
+    <!-- Emergency Exit - Always Accessible -->
+    <div class="fixed bottom-4 right-4 z-50">
+      <div x-data="emergencyExit">
+        <div x-data="{ hover: false }" class="relative">
+          <button
+            @mouseenter="hover = true"
+            @mouseleave="hover = false"
+            @focus="hover = true"
+            @blur="hover = false"
+            @click="exit()"
+            class="bg-rhodochrosite-rose hover:bg-rhodochrosite-rose-600 text-selenite-white-50 transition-all duration-300 flex items-center space-x-2 rounded-md shadow-soft"
+            :class="{
+              'px-sm py-xs text-small': window.innerWidth < 768,
+              'px-md py-sm': window.innerWidth >= 768
+            }"
+            aria-label="Emergency exit - Click to leave immediately"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              :class="{
+                'h-4 w-4': window.innerWidth < 768,
+                'h-5 w-5': window.innerWidth >= 768
+              }"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <span
+              :class="{
+                'hidden sm:inline': window.innerWidth < 768,
+                'inline': window.innerWidth >= 768
+              }"
+              >Emergency Exit</span
+            >
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header Structure -->
+    <header class="max-w-4xl mx-auto mb-8">
+      <div class="flex items-center justify-between mb-8">
+        <a
+          href="/trauma-informed-ui/index.html"
+          class="flex items-center space-x-2"
+        >
+          <img
+            src="/src/assets/dgl-logo.svg"
+            alt="Dr. G's Lab Logo"
+            class="h-8 md:h-10"
+          />
+        </a>
+        <nav>
+          <a
+            href="atomic-components.html"
+            class="text-azurite-blue-600 hover:text-azurite-blue-700 transition-all duration-300"
+          >
+            ← Back to Design Foundations
+          </a>
+        </nav>
+      </div>
+      <h1
+        class="font-playfair font-bold text-azurite-blue-900 text-h1-mobile md:text-h1-tablet lg:text-h1-desktop mb-4"
+      >
+        Layout System
+      </h1>
+      <p class="font-montserrat text-grey-800 text-body mb-4">
+        Our layout system creates predictable, calming spaces that reduce
+        cognitive load and provide clear visual hierarchy through consistent
+        spacing and structure.
+      </p>
+    </header>
+
+    <!-- Breadcrumb Navigation -->
+    <nav
+      aria-label="Breadcrumb"
+      class="mb-2xl inline-block bg-selenite-white-100 rounded-md px-md py-sm shadow-soft"
+    >
+      <ol
+        class="flex items-center space-x-2 text-sm font-montserrat text-grey-700"
+      >
+        <li>
+          <a
+            href="atomic-components.html"
+            class="hover:underline text-azurite-blue-600"
+            >Design Foundations</a
+          >
+        </li>
+        <li aria-hidden="true">/</li>
+        <li class="text-grey-500" aria-current="page">Layout</li>
+      </ol>
+    </nav>
+
+    <main class="max-w-4xl mx-auto space-y-16">
+      <!-- Spacing System Section -->
+      <section aria-labelledby="spacing-system-heading">
+        <h2
+          id="spacing-system-heading"
+          class="font-playfair font-bold text-azurite-blue-900 text-h2-mobile md:text-h2-tablet lg:text-h2-desktop mb-6"
+        >
+          Spacing System
+        </h2>
+        <div class="bg-selenite-white-100 rounded-lg p-8">
+          <p class="font-montserrat text-grey-800 text-body mb-8">
+            Built on an 8px base unit, our spacing system creates consistent
+            rhythm and reduces visual stress.
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Spacing Scale -->
+            <div>
+              <h3
+                class="font-playfair font-bold text-h3-mobile md:text-h3-tablet lg:text-h3-desktop mb-4"
+              >
+                Spacing Scale
+              </h3>
+              <div class="space-y-6">
+                <div class="flex items-center space-x-4">
+                  <div class="w-4 h-4 bg-azurite-blue-200"></div>
+                  <div>
+                    <p class="font-montserrat font-medium">xs (4px)</p>
+                    <p class="text-grey-600 text-small">0.5x base unit</p>
+                  </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                  <div class="w-8 h-4 bg-azurite-blue-300"></div>
+                  <div>
+                    <p class="font-montserrat font-medium">sm (8px)</p>
+                    <p class="text-grey-600 text-small">1x base unit</p>
+                  </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                  <div class="w-16 h-4 bg-azurite-blue-400"></div>
+                  <div>
+                    <p class="font-montserrat font-medium">md (16px)</p>
+                    <p class="text-grey-600 text-small">2x base unit</p>
+                  </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                  <div class="w-24 h-4 bg-azurite-blue-500"></div>
+                  <div>
+                    <p class="font-montserrat font-medium">lg (24px)</p>
+                    <p class="text-grey-600 text-small">3x base unit</p>
+                  </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                  <div class="w-32 h-4 bg-azurite-blue-600"></div>
+                  <div>
+                    <p class="font-montserrat font-medium">xl (32px)</p>
+                    <p class="text-grey-600 text-sm">4x base unit</p>
+                  </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                  <div class="w-48 h-4 bg-azurite-blue-700"></div>
+                  <div>
+                    <p class="font-montserrat font-medium text-base">
+                      2xl (48px)
+                    </p>
+                    <p class="text-grey-600 text-sm">6x base unit</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Spacing Usage -->
+            <div>
+              <h3
+                class="font-playfair font-bold text-h3-mobile md:text-h3-tablet lg:text-h3-desktop mb-4"
+              >
+                Common Usage
+              </h3>
+              <div class="space-y-4">
+                <p class="font-montserrat text-grey-800 text-sm">
+                  <span class="font-medium">xs (4px):</span> Fine details, tight
+                  spacing
+                </p>
+                <p class="font-montserrat text-grey-800 text-sm">
+                  <span class="font-medium">sm (8px):</span> Component internal
+                  spacing
+                </p>
+                <p class="font-montserrat text-grey-800 text-sm">
+                  <span class="font-medium">md (16px):</span> Component padding,
+                  gaps
+                </p>
+                <p class="font-montserrat text-grey-800 text-sm">
+                  <span class="font-medium">lg (24px):</span> Section spacing
+                </p>
+                <p class="font-montserrat text-grey-800 text-sm">
+                  <span class="font-medium">xl (32px):</span> Large section gaps
+                </p>
+                <p class="font-montserrat text-grey-800 text-sm">
+                  <span class="font-medium">2xl (48px):</span> Major layout
+                  divisions
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trauma-Informed Spacing & Layout (Atomic Level) -->
+      <section aria-labelledby="trauma-spacing-layout-heading">
+        <h2
+          id="trauma-spacing-layout-heading"
+          class="font-playfair font-bold text-azurite-blue-900 text-h2-mobile md:text-h2-tablet lg:text-h2-desktop mb-6"
+        >
+          Trauma-Informed Spacing & Layout (Atomic Level)
+        </h2>
+        <div class="bg-selenite-white-100 rounded-lg p-8 space-y-8">
+          <!-- Philosophy -->
+          <div>
+            <h3
+              class="font-playfair font-bold text-h3-mobile md:text-h3-tablet lg:text-h3-desktop mb-2"
+            >
+              Why Spacing Matters
+            </h3>
+            <ul class="list-disc pl-6 text-grey-800 text-sm space-y-2">
+              <li>Creates visual breathing room and reduces overwhelm</li>
+              <li>Establishes clear boundaries between atomic elements</li>
+              <li>Builds predictable rhythm and trust</li>
+              <li>Reduces cognitive load and supports psychological safety</li>
+            </ul>
+          </div>
+          <!-- Spacing Usage Examples -->
+          <div>
+            <h3
+              class="font-playfair font-bold text-h3-mobile md:text-h3-tablet lg:text-h3-desktop mb-2"
+            >
+              Spacing Usage Examples
+            </h3>
+            <pre
+              class="bg-grey-100 rounded p-4 text-grey-800 text-small overflow-x-clip mb-2"
+            ><code class="text-caption overflow-x-clip">&lt;!-- Margin examples --&gt;
+&lt;div class=&quot;mt-md mb-lg&quot;&gt; <br> Margins: top-16px, <br> bottom-24px&lt;/div&gt;
+
+&lt;!-- Padding examples --&gt;
+&lt;div class=&quot;p-lg&quot;&gt; <br> Padding: 24px <br> all around&lt;/div&gt;
+
+&lt;!-- Combined spacing --&gt;
+&lt;div class=&quot;py-md px-lg&quot;&gt; <br> Padding: <br> vertical-16px, <br> horizontal-24px&lt;/div&gt;
+
+&lt;!-- Gap spacing for <br> flex/grid --&gt;
+&lt;div class=&quot;flex flex-col <br> gap-md&quot;&gt;
+  &lt;div&gt;Item 1&lt;/div&gt;
+  &lt;div&gt;Item 2&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            <p class="text-grey-700 text-small">
+              Use <code>gap-*</code>, <code>p-*</code>, <code>m-*</code> classes
+              to create safe, predictable atomic layouts.
+            </p>
+          </div>
+          <!-- Tailwind Config Snippet -->
+          <div>
+            <h3
+              class="font-playfair font-bold text-h3-mobile md:text-h3-tablet lg:text-h3-desktop mb-2"
+            >
+              Spacing Tokens (Tailwind Config)
+            </h3>
+            <pre
+              class="bg-grey-100 rounded p-4 text-grey-800 text-small overflow-x-auto"
+            ><code class="text-caption">spacing: {
+  'xs': '4px',
+  'sm': '8px',
+  'md': '16px',
+  'lg': '24px',
+  'xl': '32px',
+  '2xl': '48px',
+}</code></pre>
+          </div>
+          <!-- Trauma-Informed Note -->
+          <div>
+            <h3
+              class="font-playfair font-bold text-h3-mobile md:text-h3-tablet lg:text-h3-desktop mb-2"
+            >
+              Trauma-Informed Note
+            </h3>
+            <p class="font-montserrat text-grey-800 text-sm">
+              Consistent, generous spacing at the atomic level helps users feel
+              safe, reduces visual stress, and supports clear, accessible
+              interfaces. Always use spacing tokens and avoid crowding elements.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Grid System Section -->
+      <section aria-labelledby="grid-system-heading">
+        <h2
+          id="grid-system-heading"
+          class="font-playfair font-bold text-azurite-blue-900 text-h2-mobile md:text-h2-tablet lg:text-h2-desktop mb-6"
+        >
+          Grid System
+        </h2>
+        <div class="bg-selenite-white-100 rounded-lg p-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Grid Structure -->
+            <div>
+              <h3
+                class="font-playfair font-bold text-h3-mobile md:text-h3-tablet lg:text-h3-desktop mb-4"
+              >
+                Grid Structure
+              </h3>
+              <div class="space-y-4">
+                <p class="font-montserrat text-grey-800 text-sm">
+                  <span class="font-medium">Columns:</span> 12-column grid
+                </p>
+                <p class="font-montserrat text-grey-800 text-sm">
+                  <span class="font-medium">Gutters:</span> 24px (lg spacing)
+                </p>
+                <p class="font-montserrat text-grey-800 text-sm">
+                  <span class="font-medium">Margins:</span>
+                </p>
+                <ul class="list-disc list-inside ml-4 space-y-2 text-sm">
+                  <li class="font-montserrat text-grey-800">Mobile: 16px</li>
+                  <li class="font-montserrat text-grey-800">Tablet: 32px</li>
+                  <li class="font-montserrat text-grey-800">Desktop: 64px</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Grid Example -->
+            <div>
+              <h3
+                class="font-playfair font-bold text-h3-mobile md:text-h3-tablet lg:text-h3-desktop mb-4"
+              >
+                Grid Example
+              </h3>
+              <div
+                class="grid grid-cols-12 gap-2 bg-selenite-white-200 p-4 rounded-md"
+              >
+                <div
+                  class="col-span-12 md:col-span-6 lg:col-span-4 h-12 bg-azurite-blue-100 rounded"
+                ></div>
+                <div
+                  class="col-span-12 md:col-span-6 lg:col-span-4 h-12 bg-azurite-blue-100 rounded"
+                ></div>
+                <div
+                  class="col-span-12 md:col-span-12 lg:col-span-4 h-12 bg-azurite-blue-100 rounded"
+                ></div>
+              </div>
+              <p class="font-montserrat text-grey-600 text-small mt-4">
+                Example: Full width on mobile, half on tablet, third on desktop
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Responsive Breakpoints Section -->
+      <section aria-labelledby="breakpoints-heading">
+        <h2
+          id="breakpoints-heading"
+          class="font-playfair font-bold text-azurite-blue-900 text-h2-mobile md:text-h2-tablet lg:text-h2-desktop mb-6"
+        >
+          Responsive Breakpoints
+        </h2>
+        <div class="bg-selenite-white-100 rounded-lg p-8">
+          <div class="space-y-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <!-- Mobile -->
+              <div class="bg-selenite-white-200 p-6 rounded-lg">
+                <h3
+                  class="font-playfair font-bold text-h3-mobile md:text-h3-tablet lg:text-h3-desktop mb-4"
+                >
+                  Mobile
+                </h3>
+                <p class="font-montserrat text-grey-800 text-body mb-2">
+                  320px - 767px
+                </p>
+                <p class="text-grey-600 text-small">
+                  Single column layout, stacked components
+                </p>
+              </div>
+
+              <!-- Tablet -->
+              <div class="bg-selenite-white-200 p-6 rounded-lg">
+                <h3
+                  class="font-playfair font-bold text-h3-mobile md:text-h3-tablet lg:text-h3-desktop mb-4"
+                >
+                  Tablet
+                </h3>
+                <p class="font-montserrat text-grey-800 text-body mb-2">
+                  768px - 1023px
+                </p>
+                <p class="text-grey-600 text-small">
+                  Two column layouts, adaptive navigation
+                </p>
+              </div>
+
+              <!-- Desktop -->
+              <div class="bg-selenite-white-200 p-6 rounded-lg">
+                <h3
+                  class="font-playfair font-bold text-h3-mobile md:text-h3-tablet lg:text-h3-desktop mb-4"
+                >
+                  Desktop
+                </h3>
+                <p class="font-montserrat text-grey-800 text-body mb-2">
+                  1024px and above
+                </p>
+                <p class="text-grey-600 text-small">
+                  Multi-column layouts, full navigation
+                </p>
+              </div>
+            </div>
+
+            <!-- Responsive Guidelines -->
+            <div>
+              <h3
+                class="font-playfair font-bold text-h3-mobile md:text-h3-tablet lg:text-h3-desktop mb-4"
+              >
+                Responsive Guidelines
+              </h3>
+              <div class="space-y-4">
+                <p class="font-montserrat text-grey-800 text-sm">
+                  - Use mobile-first approach in development
+                </p>
+                <p class="font-montserrat text-grey-800 text-sm">
+                  - Maintain content hierarchy across breakpoints
+                </p>
+                <p class="font-montserrat text-grey-800 text-sm">
+                  - Adjust spacing and typography for readability
+                </p>
+                <p class="font-montserrat text-grey-800 text-sm">
+                  - Ensure touch targets are accessible (minimum 44x44px)
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer Structure -->
+    <footer class="max-w-4xl mx-auto mt-16 pt-8 border-t border-grey-200">
+      <div
+        class="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0"
+      >
+        <p class="font-montserrat text-grey-600 text-small">
+          Trauma-informed interfaces is a project of Dr. G's Lab in
+          collaboration with Festa Design Studio
+        </p>
+        <img
+          src="/src/assets/dgl-logomark.svg"
+          alt="Dr. G's Lab Logomark"
+          class="h-6"
+        />
+      </div>
+    </footer>
+  </body>
+</html>

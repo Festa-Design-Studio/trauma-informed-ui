@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>[Component Page Title]</title>
+    <!-- Google Fonts and main.js import as in main project -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body class="bg-selenite-white-50 min-h-screen p-8">
+    <!-- Header Structure: Systematic, reusable for all component pages -->
+    <header class="max-w-4xl mx-auto mb-8">
+      <!-- Logo and Brand Section -->
+      <div class="flex items-center justify-between mb-8">
+        <a href="/" class="flex items-center space-x-2">
+          <img
+            src="/src/assets/dgl-logo.svg"
+            alt="Dr. G's Lab Logo"
+            class="h-8 md:h-10"
+          />
+        </a>
+        <nav>
+          <a
+            href="../index.html"
+            class="text-azurite-blue-600 hover:text-azurite-blue-700 transition-all duration-300"
+          >
+            ← Back to Main
+          </a>
+        </nav>
+      </div>
+      <!-- Page Title Section -->
+      <h1
+        class="font-playfair font-bold text-azurite-blue-900 text-h1-mobile md:text-h1-tablet lg:text-h1-desktop mb-4"
+      >
+        [Page Title]
+      </h1>
+      <p class="font-montserrat text-grey-800 text-body mb-4">
+        [Page Description]
+      </p>
+    </header>
+
+    <!-- Main content goes here -->
+    <main class="max-w-4xl mx-auto space-y-16">
+      <!-- Example Section: Emergency Exit Button -->
+      <section aria-labelledby="emergency-exit-heading">
+        <h2
+          id="emergency-exit-heading"
+          class="font-playfair font-bold text-azurite-blue-900 text-h2-mobile md:text-h2-tablet lg:text-h2-desktop mb-6"
+        >
+          Emergency Exit Button
+        </h2>
+        <div
+          class="space-y-8 p-8 bg-selenite-white-100 rounded-lg border border-grey-200 min-h-max"
+        >
+          <!-- Emergency Exit Button Content Here -->
+        </div>
+      </section>
+      <!-- Repeat for other major content blocks (Primary Button, Secondary Button, etc.) -->
+    </main>
+
+    <!-- Footer Structure: Systematic, reusable for all component pages -->
+    <footer class="max-w-4xl mx-auto mt-16 pt-8 border-t border-grey-200">
+      <div
+        class="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0"
+      >
+        <p class="font-montserrat text-grey-600 text-small">
+          Trauma-informed interfaces is a project of Dr. G's Lab in
+          collaboration with Festa Design Studio
+        </p>
+        <img
+          src="/src/assets/dgl-logomark.svg"
+          alt="Dr. G's Lab Logomark"
+          class="h-6"
+        />
+      </div>
+    </footer>
+  </body>
+</html>
